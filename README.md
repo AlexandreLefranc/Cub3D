@@ -1,5 +1,16 @@
 # Cub3D
 
+# Plan
+
+- Initialiser la structure globale
+- Parser et sauvegarder les informations dans la structure globale
+- Verifier la validite de la map
+- Initialiser la fenetre
+- Initialiser les textures
+- Definir les hooks
+- Lancer le jeu
+- Boucler en attendant les hooks
+
 # Parser
 
 ```
@@ -7,7 +18,6 @@ Verifier le nom du fichier
 Ouvrir le fichier
 
 Pour chaque ligne non-vide:
-	Trimmer la ligne
 	Split la ligne
 	Regarder l'identifiant
 	Verifier la validite de l'identifiant
@@ -24,6 +34,11 @@ Verifier la map:
 	Verifier l'unicite de la position de depart
 	Verifier que la map soit fermee
 		Comment ?
+			- Option facile mais moins naturel: Considerer l'espace comme un mur.
+				Etendre les lignes pour qu'elles fassent toutes la meme longueur
+				Remplacer les espaces pour des 1
+				On retombe sur le parsing de so_long.
+			- Option dure mais naturelle: Verifier la contiguite des murs
 
 
 ```
