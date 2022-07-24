@@ -1,3 +1,7 @@
+# Table of content
+
+[[toc]]
+
 # Cub3D
 
 # Plan
@@ -42,3 +46,7 @@ Verifier la map:
 
 
 ```
+
+# Raycasting
+
+$$2+3$$
