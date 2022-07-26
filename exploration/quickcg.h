@@ -325,5 +325,3 @@ void audioSetVolume(double volume); //multiplier used if mode is 2 (volume-contr
 } //end of namespace QuickCG
 
 #endif
-
-

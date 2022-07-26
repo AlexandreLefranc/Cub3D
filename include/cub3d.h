@@ -7,6 +7,13 @@
 # include <string.h>
 # include <math.h>
 
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+
+# include "libft.h"
+# include "ft_printf.h"
+
 typedef struct s_rgb
 {
 	int	red;
