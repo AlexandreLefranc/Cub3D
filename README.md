@@ -42,9 +42,7 @@ Verifier la map:
 				Etendre les lignes pour qu'elles fassent toutes la meme longueur
 				Remplacer les espaces pour des 1
 				On retombe sur le parsing de so_long.
-			- Option dure mais naturelle: Verifier la contiguite des murs
-
-
+			- Option dure mais naturelle: Verifier la contiguite des murs exterieurs
 ```
 
 # Raycasting
