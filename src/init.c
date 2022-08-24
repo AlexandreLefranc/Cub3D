@@ -1,9 +1,11 @@
 #include "cub3d.h"
 
-int	init_all(t_all **all)
+t_all	*init_all()
 {
-	*all = ft_calloc(sizeof(**all), 1);
-	if (*all == NULL)
-		return (1);
-	return (0);
+	t_all	*all;
+
+	all = ft_calloc(sizeof(*all), 1);
+	if (all == NULL)
+		return (NULL);
+	return (all);
 }

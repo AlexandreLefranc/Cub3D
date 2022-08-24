@@ -12,72 +12,34 @@ static int	is_cub_file(char *file)
 	return (1);
 }
 
-static char *read_file_to_str(char *file)
-{
-	int	 fd;
-	ssize_t ret;
-	char	buffer[1024];
-	char	*old_str;
-	char	*str;
-
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	ret = read(fd, buffer, 1023);
-	if (ret <= 0)
-		return (NULL);
-	old_str = ft_strdup("");
-	if (old_str == NULL)
-		return (NULL);
-	while (ret != 0)
-	{
-		buffer[ret] = '\0';
-		str = ft_strjoin(old_str, buffer);
-		free(old_str);
-		old_str = str;
-		ret = read(fd, buffer, 1023);
-	}
-	close(fd);
-	return (str);
-}
-
-
-// static int	get_info(int fd, t_all *all)
+// static int	missing_info(t_all *all)
 // {
-// 	char	*line;
-// 	char	**splitted;
-//
-// 	while (missing_info(all) == 1)
-// 	{
-// 		line = get_next_line(fd);
-// 		splitted = ft_split(line);
-// 		free(line);
-// 		is_valid_identifier(splittedp[0]);
-//
-// 	}
+// 	if (all->floor == NULL)
+// 		return (1);
+// 	if (all->ceiling == NULL)
+// 		return (1);
+// 	if (all->texture_NO == NULL)
+// 		return (1);
+// 	if (all->texture_SO == NULL)
+// 		return (1);
+// 	if (all->texture_WE == NULL)
+// 		return (1);
+// 	if (all->texture_EA == NULL)
+// 		return (1);
+// 	return (0);
 // }
 
-static int	get_info(char *line, t_all *all)
+
+
+int	process_line(char *line, t_all *all)
 {
-	char	**tab;
+	char	**strtab;
 
-
-}
-
-static int	missing_info(t_all *all)
-{
-	if (all->floor == NULL)
-		return (1);
-	if (all->ceiling == NULL)
-		return (1);
-	if (all->texture_NO == NULL)
-		return (1);
-	if (all->texture_SO == NULL)
-		return (1);
-	if (all->texture_WE == NULL)
-		return (1);
-	if (all->texture_EA == NULL)
-		return (1);
+	strtab = ft_split(line, ' ');
+	if (ft_strtabsize(strtab) > 0)
+		printf("strtab first element = %s\n", strtab[0]);
+	ft_strtabfree(strtab);
+	(void)all;
 	return (0);
 }
 
@@ -87,20 +49,20 @@ int	parser(int argc, char **argv, t_all *all)
 	char	*line;
 
 	if (argc != 2)
-		return (ft_printf("Invalid number of argument\n"), 1);
+		return (printf("Invalid number of argument\n"), 1);
 	all->map_path = argv[1];
 	if (is_cub_file(all->map_path) == 0)
-		return (ft_printf("Invalid file name\n"), 1);
+		return (printf("Invalid file name\n"), 1);
 	fd = open(all->map_path, O_RDONLY);
-	while (missing_info(all) == 1)
+	while ((line = get_next_line(fd)) != NULL)
 	{
-		line = get_next_line(fd);
-		if (only_white_space(line) == 0)
-		{
-			get_info(line, all);
-		}
+		printf("%s", line);
+		process_line(line, all);
+		// if (is_metainfo_full(all) == 1)
+		// 	break;
 		free(line);
 	}
+	close(fd);
 
 	return (0);
 }

@@ -6,6 +6,11 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include "libft.h"
+# include "get_next_line.h"
 
 typedef struct s_vec
 {
@@ -50,7 +55,7 @@ typedef struct s_all
 	t_game		*game;
 }	t_all;
 
-int	init_all(t_all **all);
+t_all	*init_all();
 int	parser(int argc, char **argv, t_all *all);
 
 #endif
