@@ -7,12 +7,11 @@
 # include <string.h>
 # include <math.h>
 
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-
-# include "libft.h"
-# include "ft_printf.h"
+typedef struct s_vec
+{
+	double	x;
+	double	y;
+}	t_vec;
 
 typedef struct s_rgb
 {
@@ -29,6 +28,13 @@ typedef struct s_texture
 	int		height;
 }	t_texture;
 
+typedef struct s_game
+{
+	t_vec	pos;
+	t_vec	dir;
+	t_vec	plane;
+}	t_game;
+
 typedef struct s_all
 {
 	void		*mlx;
@@ -41,6 +47,7 @@ typedef struct s_all
 	t_texture	*texture_SO;
 	t_texture	*texture_WE;
 	t_texture	*texture_EA;
+	t_game		*game;
 }	t_all;
 
 int	init_all(t_all **all);

@@ -37,8 +37,8 @@ g++ exploration/raycaster_textured.cpp exploration/quickcg.cpp -I exploration -I
 */
 
 
-#define screenWidth 1500
-#define screenHeight 1200
+#define screenWidth 1800
+#define screenHeight 900
 #define texWidth 64
 #define texHeight 64
 #define mapWidth 24

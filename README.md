@@ -54,3 +54,12 @@ https://lodev.org/cgtutor/raycasting.html
 ## Maths
 
 $$2+3$$
+
+# Plan de developpement
+
+1 - Mettre en place le parsing
+2 - Creer un affichage de minimap, utile pour debug. Depend de (1)
+3 - Gerer les inputs, dont la souris, et refresh la minimap. Depend de (1, 2)
+4 - Gerer les collisions, systeme de porte. Depend de (1, 2, 3)
+5 - Mettre en place le ray casting connaissant les conditions. Depend de (1)
+6 - Integerer la minimap et le rendu dans la boucle d'event.
