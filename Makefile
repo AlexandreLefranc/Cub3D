@@ -36,10 +36,10 @@ MLX_LD	=	-lmlx -lXext -lX11 -L $(MLX_DIR)
 #               SOURCES              #
 #------------------------------------#
 
-SRC_DIR		=	src/
-SRC_FILES	=	main.c \
-				init.c \
-				parser.c
+SRC_DIR		=	testLouiseA/
+SRC_FILES	=	main.c
+				# init.c \
+				# parser.c
 
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
