@@ -57,25 +57,50 @@ static char *read_file_to_str(char *file)
 // 	}
 // }
 
+static int	get_info(char *line, t_all *all)
+{
+	char	**tab;
+
+
+}
+
+static int	missing_info(t_all *all)
+{
+	if (all->floor == NULL)
+		return (1);
+	if (all->ceiling == NULL)
+		return (1);
+	if (all->texture_NO == NULL)
+		return (1);
+	if (all->texture_SO == NULL)
+		return (1);
+	if (all->texture_WE == NULL)
+		return (1);
+	if (all->texture_EA == NULL)
+		return (1);
+	return (0);
+}
+
 int	parser(int argc, char **argv, t_all *all)
 {
-	char	*str_file;
-	char	**tab_file;
+	int		fd;
+	char	*line;
 
 	if (argc != 2)
 		return (ft_printf("Invalid number of argument\n"), 1);
 	all->map_path = argv[1];
 	if (is_cub_file(all->map_path) == 0)
 		return (ft_printf("Invalid file name\n"), 1);
-	str_file = read_file_to_str(all->map_path);
-	if (str_file == NULL)
-		return (2);
-	ft_printf("%s\n", str_file);
-	tab_file = ft_split(str_file, '\n');
-	free(str_file);
-	if (tab_file == NULL)
-		return (2);
-	for (size_t i=0; i < ft_strtabsize(tab_file); i++)
-		ft_printf("[%s]\n", tab_file[i]);
+	fd = open(all->map_path, O_RDONLY);
+	while (missing_info(all) == 1)
+	{
+		line = get_next_line(fd);
+		if (only_white_space(line) == 0)
+		{
+			get_info(line, all);
+		}
+		free(line);
+	}
+
 	return (0);
 }
