@@ -39,7 +39,10 @@ MLX_LD	=	-lmlx -lXext -lX11 -L $(MLX_DIR)
 SRC_DIR		=	src/
 SRC_FILES	=	main.c \
 				init.c \
-				parser.c
+				parser.c \
+				parser_info.c \
+				parser_map.c \
+				utils.c
 
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
@@ -70,10 +73,8 @@ LD_FLAGS	=	$(LIBFT_LD) $(MLX_LD)
 #------------------------------------------------------------------------------#
 
 all: $(NAME)
-	@echo "\033[0;32mProgram $(NAME) created !\033[0m"
 
 $(NAME): $(LIBFT_A) $(MLX_A) $(OBJ)
-	@echo "\033[0;36mLinking objects !\033[0m"
 	$(CC) $(CFLAGS) $(OBJ) $(INC_FLAGS) $(LD_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)

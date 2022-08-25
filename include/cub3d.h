@@ -57,7 +57,19 @@ typedef struct s_all
 	t_player	player;
 }	t_all;
 
+// init.c
 t_all	*init_all();
+
+// parser.c
 int	parser(int argc, char **argv, t_all *all);
+
+// parser_info.c
+int	extract_texture_rgb(int fd, t_all *all);
+
+// parser_map.c
+int	extract_map(int fd, t_all *all);
+
+// utils.c
+void	drain_fd(int fd);
 
 #endif
