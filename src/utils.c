@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:48:18 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/25 17:52:04 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:15:40 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	drain_fd(int fd)
 {
-	char *line;
+	char	*line;
 
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 }

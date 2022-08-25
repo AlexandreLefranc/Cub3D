@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
+/*   Updated: 2022/08/25 18:24:31 by alefranc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -50,24 +62,24 @@ typedef struct s_all
 	char		**map;
 	t_rgb		floor;
 	t_rgb		ceiling;
-	t_texture	texture_NO;
-	t_texture	texture_SO;
-	t_texture	texture_WE;
-	t_texture	texture_EA;
+	t_texture	texture_no;
+	t_texture	texture_so;
+	t_texture	texture_we;
+	t_texture	texture_ea;
 	t_player	player;
 }	t_all;
 
 // init.c
-t_all	*init_all();
+t_all	*init_all(void);
 
 // parser.c
-int	parser(int argc, char **argv, t_all *all);
+int		parser(int argc, char **argv, t_all *all);
 
 // parser_info.c
-int	extract_texture_rgb(int fd, t_all *all);
+int		extract_texture_rgb(int fd, t_all *all);
 
 // parser_map.c
-int	extract_map(int fd, t_all *all);
+int		extract_map(int fd, t_all *all);
 
 // utils.c
 void	drain_fd(int fd);
