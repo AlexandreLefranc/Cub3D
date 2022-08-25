@@ -9,6 +9,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # include "libft.h"
 # include "get_next_line.h"
 

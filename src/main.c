@@ -12,5 +12,8 @@ int	main(int argc, char **argv)
 
 	printf("Forgot to manage exit !\n");
 	free(all);
+
+	(void)argv;
+	(void)argc;
 	return (0);
 }
