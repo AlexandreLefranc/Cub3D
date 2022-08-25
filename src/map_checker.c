@@ -6,17 +6,26 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:54:29 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/08/25 16:04:14 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:44:20 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	char_is_valid(char c, int line, int column)
+static int	char_is_valid(char c, int line, int column, int *player)
 {
+	if (*player == 1 && (c == 'N' || c == 'S' || c == 'E' || c == 'W'))
+	{
+		printf("you already have a player in your game\n");
+		return (0);
+	}
 	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-	|| c == 32)
-	return (1);
+		|| c == 32)
+	{
+		if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			*player = 1;
+		return (1);
+	}
 	else
 	{
 		printf("char %c is invalid at [%d][%d]\n", c, line, column);
@@ -36,7 +45,7 @@ static int	spaces_are_valid(int line, int column, char **map)
 			return (1);
 		else
 		{
-			printf("spaces are invalid\n");
+			printf("spaces are invalid at : map[%d][%d]\n", line, column);
 			return (0);
 		}
 	}
@@ -111,7 +120,9 @@ int	map_is_valid(char **map)
 {
 	int	line;
 	int	column;
+	int	player;
 
+	player = 0;
 	line = 0;
 	if (line_borders_check(map) == 0)
 		return (0);
@@ -119,17 +130,22 @@ int	map_is_valid(char **map)
 	{
 		column = 0;
 		if (column_borders_check(map[line]) == 0)
-			// || last_column_check(map[line]) == 0)
 			return (0);
 		while (map[line][column] && column < (int)ft_strlen(map[line]))
 		{
-			if (char_is_valid(map[line][column], line, column) == 1
+			if (char_is_valid(map[line][column], line, column, &player) == 1
 				&& spaces_are_valid(line, column, map) == 1)
 				column++;
 			else
 				return (0);
 		}
 		line++;
+	}
+	if (player == 0)
+	{
+
+		printf("no player\n");
+		return (0);
 	}
 	return (1);
 }
