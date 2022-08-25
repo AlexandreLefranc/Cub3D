@@ -6,7 +6,7 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:54:29 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/08/25 15:47:36 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:04:14 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,6 @@ static int	spaces_are_valid(int line, int column, char **map)
 	}
 	return (1);
 }
-//
-// static int	last_column_check(char *map)
-// {
-// 	int	last_column;
-//
-// 	last_column = (int)ft_strlen(map) - 1;
-// 	if (map[last_column] != '1' && map[last_column] != 32) // check que dernier char soit un espace ou un mur
-// 		return (0);
-// 	if (map[last_column] == '1') // si dernier char est un mur return true
-// 		return (1);
-// 	while (map[last_column] == 32)
-// 		last_column--; // si dernier char = espace -> recule jusqu'au dernier espace
-// 	if (map[last_column] != '1') // verifie que 1er char apres dernier expace soit un mur
-// 		return (0);
-// 	return (1);
-// }
 
 static int	column_borders_check(char *map)
 {
