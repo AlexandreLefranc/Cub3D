@@ -11,7 +11,7 @@
 NAME	=	cub3d
 
 CC		=	clang
-CFLAGS	=	-Wall -Wextra -Werror -g3
+CFLAGS	=	-Wall -Wextra -Werror -Wno-error=unused-function -g3
 INC		=	-I include
 
 #------------------------------------#

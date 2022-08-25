@@ -21,9 +21,10 @@ typedef struct s_vec
 
 typedef struct s_rgb
 {
-	int	red;
-	int	green;
-	int	blue;
+	char	*raw;
+	int		red;
+	int		green;
+	int		blue;
 }	t_rgb;
 
 typedef struct s_texture
@@ -34,12 +35,12 @@ typedef struct s_texture
 	int		height;
 }	t_texture;
 
-typedef struct s_game
+typedef struct s_player
 {
 	t_vec	pos;
 	t_vec	dir;
 	t_vec	plane;
-}	t_game;
+}	t_player;
 
 typedef struct s_all
 {
@@ -47,13 +48,13 @@ typedef struct s_all
 	void		*win;
 	char		*map_path;
 	char		**map;
-	t_rgb		*floor;
-	t_rgb		*ceiling;
-	t_texture	*texture_NO;
-	t_texture	*texture_SO;
-	t_texture	*texture_WE;
-	t_texture	*texture_EA;
-	t_game		*game;
+	t_rgb		floor;
+	t_rgb		ceiling;
+	t_texture	texture_NO;
+	t_texture	texture_SO;
+	t_texture	texture_WE;
+	t_texture	texture_EA;
+	t_player	player;
 }	t_all;
 
 t_all	*init_all();
