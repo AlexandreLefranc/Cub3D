@@ -6,7 +6,7 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:54:29 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/08/25 16:44:20 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:50:25 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ int	map_is_valid(char **map)
 	}
 	if (player == 0)
 	{
-
 		printf("no player\n");
 		return (0);
 	}
