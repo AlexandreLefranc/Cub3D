@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:54:29 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/08/25 15:31:17 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:47:36 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static int	char_is_valid(char c, int line, int column)
 
 static int	spaces_are_valid(int line, int column, char **map)
 {
-	if (map[line][column] == '0')
+	char	c;
+
+	c = map[line][column];
+	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		if (map[line][column - 1] != 32 && map[line][column + 1] != 32
 			&& map[line - 1][column] != 32 && map[line + 1][column] != 32)
