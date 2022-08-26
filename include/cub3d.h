@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/26 16:48:24 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:22:38 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # include <stdbool.h>
 # include "libft.h"
 # include "get_next_line.h"
+# include "mlx.h"
+
+# define SCREENW 1800
+# define SCREENH 900
 
 typedef struct s_vec
 {
@@ -71,6 +75,12 @@ typedef struct s_all
 
 // check_rgb.c
 int		check_all_rgb(t_all *all);
+
+// create_window.c
+int		create_window(t_all *all);
+
+// display_minmap.c
+int		display_minimap(t_all *all, int offsetx, int offsety);
 
 // init.c
 t_all	*init_all(void);
