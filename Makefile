@@ -38,6 +38,7 @@ MLX_LD	=	-lmlx -lXext -lX11 -L $(MLX_DIR)
 
 SRC_DIR		=	src/
 SRC_FILES	=	main.c \
+				check_pad_map.c \
 				check_rgb.c \
 				init.c \
 				parser.c \

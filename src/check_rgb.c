@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 14:22:40 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/26 15:23:22 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:23:16 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	check_rgb(t_rgb *rgb)
 	return (0);
 }
 
-int check_all_rgb(t_all *all)
+int	check_all_rgb(t_all *all)
 {
 	if (check_rgb(&all->floor) != 0)
 		return (1);
