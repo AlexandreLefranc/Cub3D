@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:13:37 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/25 18:24:31 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:24:12 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	print_all(t_all *all)
 	if (all->map != NULL)
 	{
 		for (int i = 0; all->map[i] != NULL; i++)
-		printf("%s\n", all->map[i]);
+		printf("[%s]\n", all->map[i]);
 	}
 	printf("\n");
 
@@ -99,6 +99,8 @@ int	main(int argc, char **argv)
 	if (all == NULL)
 		return (1);
 	if (parser(argc, argv, all) != 0)
+		return (destroy_all(all), 1);
+	if (check_all_rgb(all) != 0)
 		return (destroy_all(all), 1);
 	print_all(all);
 	destroy_all(all);

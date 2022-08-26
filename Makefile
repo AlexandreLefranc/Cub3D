@@ -11,7 +11,7 @@
 NAME	=	cub3d
 
 CC		=	clang
-CFLAGS	=	-Wall -Wextra -Werror -Wno-error=unused-function -g3
+CFLAGS	=	-Wall -Wextra -Werror -g3 # -Wno-error=unused-function
 INC		=	-I include
 
 #------------------------------------#
@@ -38,6 +38,7 @@ MLX_LD	=	-lmlx -lXext -lX11 -L $(MLX_DIR)
 
 SRC_DIR		=	src/
 SRC_FILES	=	main.c \
+				check_rgb.c \
 				init.c \
 				parser.c \
 				parser_info.c \
