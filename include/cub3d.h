@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/26 16:15:12 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:48:24 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,6 @@ typedef struct s_all
 	t_texture	texture_ea;
 	t_player	player;
 }	t_all;
-
-// check_pad_map.c
-int		check_pad_map(t_all *all);
 
 // check_rgb.c
 int		check_all_rgb(t_all *all);

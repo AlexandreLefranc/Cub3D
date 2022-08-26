@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:13:37 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/26 16:15:45 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:42:17 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ int	main(int argc, char **argv)
 		return (destroy_all(all), 1);
 	if (check_all_rgb(all) != 0)
 		return (destroy_all(all), 1);
-	check_pad_map(all);
 	print_all(all);
 	destroy_all(all);
 	return (0);
