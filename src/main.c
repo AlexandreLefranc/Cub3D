@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:13:37 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/26 18:14:23 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:47:51 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,14 @@ static void	print_all(t_all *all)
 
 static void	destroy_all(t_all *all)
 {
+	if (all->texture_no.img != NULL)
+		mlx_destroy_image(all->mlx, all->texture_no.img);
+	if (all->texture_so.img != NULL)
+		mlx_destroy_image(all->mlx, all->texture_so.img);
+	if (all->texture_we.img != NULL)
+		mlx_destroy_image(all->mlx, all->texture_we.img);
+	if (all->texture_ea.img != NULL)
+		mlx_destroy_image(all->mlx, all->texture_ea.img);
 	if (all->mlx != NULL && all->win != NULL)
 	{
 		mlx_destroy_window(all->mlx, all->win);
@@ -110,9 +118,11 @@ int	main(int argc, char **argv)
 		return (destroy_all(all), 1);
 	if (create_window(all) != 0)
 		return (destroy_all(all), 1);
+	if (create_texture(all) != 0)
+		return (destroy_all(all), 1);
 	display_minimap(all, 20, 20);
 	print_all(all);
-	sleep(2);
+	sleep(5);
 	destroy_all(all);
 	return (0);
 }

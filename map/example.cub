@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./asset/wolftex/pics/greystone.xpm
+SO ./asset/wolftex/pics/eagle.xpm
+WE ./asset/wolftex/pics/purplestone.xpm
+EA ./asset/wolftex/pics/redbrick.xpm
 
 F 220,100,250
 C 225,30,222

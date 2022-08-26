@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/26 17:22:38 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:44:23 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ typedef struct s_all
 
 // check_rgb.c
 int		check_all_rgb(t_all *all);
+
+// create_texture.c
+int		create_texture(t_all *all);
 
 // create_window.c
 int		create_window(t_all *all);
