@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/29 11:39:03 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:22:54 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 # define SCREENW 1800
 # define SCREENH 900
+# define TILE 16
 
 typedef struct s_vec
 {
