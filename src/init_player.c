@@ -60,44 +60,90 @@ static void	init_player_dir(char **map, t_vec *dir)
 	}
 }
 
-static void	player_plane(t_vec dir, t_vec *plane)
+void	player_plane(t_vec dir, t_vec *plane)
 {
 	plane->x = -0.66 * dir.y;
 	plane->y = 0.66 * dir.x;
 }
 
+void	remove_player_map_position(t_all *all)
+{
+	size_t x;
+	size_t y;
+
+	y = 0;
+	while (y < ft_strtabsize(all->map))
+	{
+		x = 0;
+		while (x < ft_strlen(all->map[y]))
+		{
+			if (all->map[y][x] == 'N' ||all->map[y][x] == 'S' ||all->map[y][x] == 'W' ||all->map[y][x] == 'E' )
+				all->map[y][x] = '0';
+			x++;
+		}
+		y++;
+	}
+}
+
+// 	init_player(&all->player, all->map);
 void	init_player(t_player *player, char **map)
 {
 	init_player_pos(map, &player->pos);
 	init_player_dir(map, &player->dir);
 	player_plane(player->dir, &player->plane);
 }
-
-// int	main(void)
+//
+// void	print_map(char **map)
 // {
-// 	char	*valid_map2[] =
-// 	{   "       11111111111111111111111111",
-// 		"       1111111111111111111111111",
-// 		"       11111W00001110000111111111",
-// 		"111111100000000000000001         ",
-// 		"111111111011000001110000111111111",
-// 		"100000000011000001110111111111111",
-// 		"11110111111111011100000010001    ",
-// 		"11110111111111011101010010001    ",
-// 		"11111000110101011100000010001    ",
-// 		"     1000000000000000110000011111",
-// 		"11111000000000001101010010001",
-// 		"110000011101010111110111100111",
-// 		"11110111 1110101 101111010001",
-// 		"11111111 1111111 111111111111", NULL};
+// 	int i;
 //
-// 	t_player player;
+// 	i = 0;
+// 	while (map[i] != NULL)
+// 	{
+// 		printf("%s\n", map[i]);
+// 		i++;
+// 	}
+// }
+
+// int	main(int argc, char **argv)
+// {
+// 	// t_all	all;
+// 	// char	*valid_map2[] =
+// 	// {   "       11111111111111111111111111",
+// 	// 	"       1111111111111111111111111",
+// 	// 	"       11111W00001110000111111111",
+// 	// 	"111111100000000000000001         ",
+// 	// 	"111111111011000001110000111111111",
+// 	// 	"100000000011000001110111111111111",
+// 	// 	"11110111111111011100000010001    ",
+// 	// 	"11110111111111011101010010001    ",
+// 	// 	"11111000110101011100000010001    ",
+// 	// 	"     1000000000000000110000011111",
+// 	// 	"11111000000000001101010010001",
+// 	// 	"110000011101010111110111100111",
+// 	// 	"11110111 1110101 101111010001",
+// 	// 	"11111111 1111111 111111111111", NULL};
+// 	//
+// 	// t_player player;
+// 	// all.map = valid_map2;
 //
-// 	init_player(&player, valid_map2);
-// 	printf("pos.x = %f\n", player.pos.x);
-// 	printf("pos.y = %f\n", player.pos.y);
-// 	printf("dir.x = %f\n", player.dir.x);
-// 	printf("dir.y = %f\n", player.dir.y);
-// 	printf("plane.x = %f\n", player.plane.x);
-// 	printf("plane.y = %f\n", player.plane.y);
+// 	t_all	*all;
+//
+// 	all = init_all();
+// 	if (all == NULL)
+// 		return (1);
+// 	if (parser(argc, argv, all) != 0)
+// 		return (destroy_all(all), 1);
+//
+// 	// all.player = player;
+// 	print_map(all->map);
+// 	remove_player_map_position(all);
+// 	print_map(all->map);
+// 	destroy_all(all);
+// 	// printf("pos.x = %f\n", player.pos.x);
+// 	// printf("pos.y = %f\n", player.pos.y);
+// 	// printf("dir.x = %f\n", player.dir.x);
+// 	// printf("dir.y = %f\n", player.dir.y);
+// 	// printf("plane.x = %f\n", player.plane.x);
+// 	// printf("plane.y = %f\n", player.plane.y);
 // }
