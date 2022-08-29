@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+<<<<<<< HEAD
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -28,6 +29,9 @@
 
 # define SCREENW 1800
 # define SCREENH 900
+=======
+# include "libft.h"
+>>>>>>> e0b11ede0d4bdf5fe641ba321d392752521ab7d1
 
 typedef struct s_vec
 {
@@ -99,5 +103,8 @@ int		extract_map(int fd, t_all *all);
 
 // utils.c
 void	drain_fd(int fd);
+
+//------------ MAP CHECKER ------------
+int	map_is_valid(char **map);
 
 #endif
