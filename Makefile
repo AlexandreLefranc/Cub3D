@@ -43,7 +43,6 @@ SRC_FILES	=	main.c \
 				create_window.c \
 				display_minimap.c \
 				init.c \
-				map_modeler.c \
 				parser.c \
 				parser_info.c \
 				parser_map.c \
