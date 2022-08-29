@@ -37,7 +37,6 @@ MLX_LD	=	-lmlx -lXext -lX11 -L $(MLX_DIR)
 #------------------------------------#
 
 SRC_DIR		=	src/
-<<<<<<< HEAD
 SRC_FILES	=	main.c \
 				check_rgb.c \
 				create_texture.c \
@@ -49,13 +48,6 @@ SRC_FILES	=	main.c \
 				parser_info.c \
 				parser_map.c \
 				utils.c
-=======
-SRC_FILES	=	main_map_modeler.c \
-				map_modeler.c
-				# main.c \
-				# init.c \
-				# parser.c
->>>>>>> e0b11ede0d4bdf5fe641ba321d392752521ab7d1
 
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 

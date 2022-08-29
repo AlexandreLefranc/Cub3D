@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/26 18:44:23 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/29 11:39:03 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
-<<<<<<< HEAD
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -29,9 +28,6 @@
 
 # define SCREENW 1800
 # define SCREENH 900
-=======
-# include "libft.h"
->>>>>>> e0b11ede0d4bdf5fe641ba321d392752521ab7d1
 
 typedef struct s_vec
 {
