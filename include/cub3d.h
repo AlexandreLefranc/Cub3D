@@ -6,6 +6,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include "libft.h"
 
 typedef struct s_vec
 {
@@ -52,5 +53,8 @@ typedef struct s_all
 
 int	init_all(t_all **all);
 int	parser(int argc, char **argv, t_all *all);
+
+//------------ MAP CHECKER ------------
+int	map_is_valid(char **map);
 
 #endif

@@ -37,9 +37,11 @@ MLX_LD	=	-lmlx -lXext -lX11 -L $(MLX_DIR)
 #------------------------------------#
 
 SRC_DIR		=	src/
-SRC_FILES	=	main.c \
-				init.c \
-				parser.c
+SRC_FILES	=	main_map_modeler.c \
+				map_modeler.c
+				# main.c \
+				# init.c \
+				# parser.c
 
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
