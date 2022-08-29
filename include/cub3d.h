@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/29 13:22:54 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:05:21 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@
 # define SCREENW 1800
 # define SCREENH 900
 # define TILE 16
+
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
 
 typedef struct s_vec
 {
@@ -74,8 +88,14 @@ typedef struct s_all
 	t_player	player;
 }	t_all;
 
+// check_map.c
+bool	map_is_valid(char **map);
+
 // check_rgb.c
 int		check_all_rgb(t_all *all);
+
+// checker.c
+int		checker(t_all *all);
 
 // create_texture.c
 int		create_texture(t_all *all);
@@ -84,7 +104,11 @@ int		create_texture(t_all *all);
 int		create_window(t_all *all);
 
 // display_minmap.c
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		display_minimap(t_all *all, int offsetx, int offsety);
+
+// display_player.c
+void	display_player(t_all *all, t_data *img);
 
 // init.c
 t_all	*init_all(void);
@@ -100,8 +124,5 @@ int		extract_map(int fd, t_all *all);
 
 // utils.c
 void	drain_fd(int fd);
-
-//------------ MAP CHECKER ------------
-int	map_is_valid(char **map);
 
 #endif

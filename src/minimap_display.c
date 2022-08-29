@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_minimap.c                                  :+:      :+:    :+:   */
+/*   minimap_display.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:07:25 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/29 13:24:13 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:03:06 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
-
-static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -61,9 +53,7 @@ static void	draw_minimap(t_all *all, t_data *img)
 				my_mlx_square(img, x * TILE, y * TILE, 0x00FF0000);
 			if (all->map[y][x] == '0')
 				my_mlx_square(img, x * TILE, y * TILE, 0x0000FF00);
-			if (all->map[y][x] == 'N' || all->map[y][x] == 'S' ||
-					all->map[y][x] == 'E' || all->map[y][x] == 'W')
-				my_mlx_square(img, x * TILE, y * TILE, 0x000000FF);
+			display_player(all, img);
 			x++;
 		}
 		y++;

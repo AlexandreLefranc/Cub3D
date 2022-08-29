@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:13:37 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/29 12:53:26 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:32:04 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parser(argc, argv, all) != 0)
 		return (destroy_all(all), 1);
-	if (check_all_rgb(all) != 0)
+	if (checker(all) != 0)
 		return (destroy_all(all), 1);
 	if (create_window(all) != 0)
 		return (destroy_all(all), 1);
