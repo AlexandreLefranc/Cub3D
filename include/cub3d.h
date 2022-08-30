@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/30 15:27:14 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:31:54 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 # define SCREENW 1800
 # define SCREENH 900
-# define TILE 8
+# define TILE 32
 
 typedef struct s_data {
 	void	*img;
