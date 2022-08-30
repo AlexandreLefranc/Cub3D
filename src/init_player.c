@@ -2,17 +2,17 @@
 
 static char	find_player_position(char **map, int *x, int *y)
 {
-	while (map[*x])
+	while (map[*y])
 	{
-		*y = 0;
-		while (map[*x][*y])
+		*x = 0;
+		while (map[*y][*x])
 		{
-			if (map[*x][*y] == 'N' || map[*x][*y] == 'S' || map[*x][*y] == 'W'
-				|| map[*x][*y] == 'E')
-				return (map[*x][*y]);
-			(*y)++;
+			if (map[*y][*x] == 'N' || map[*y][*x] == 'S' || map[*y][*x] == 'W'
+				|| map[*y][*x] == 'E')
+				return (map[*y][*x]);
+			(*x)++;
 		}
-		(*x)++;
+		(*y)++;
 	}
 	return ('\0');
 }
@@ -66,7 +66,7 @@ void	player_plane(t_vec dir, t_vec *plane)
 	plane->y = 0.66 * dir.x;
 }
 
-void	remove_player_map_position(t_all *all)
+static void	remove_player_map_position(t_all *all)
 {
 	size_t x;
 	size_t y;
@@ -86,11 +86,12 @@ void	remove_player_map_position(t_all *all)
 }
 
 // 	init_player(&all->player, all->map);
-void	init_player(t_player *player, char **map)
+void	init_player(t_all *all)
 {
-	init_player_pos(map, &player->pos);
-	init_player_dir(map, &player->dir);
-	player_plane(player->dir, &player->plane);
+	init_player_pos(all->map, &all->player.pos);
+	init_player_dir(all->map, &all->player.dir);
+	player_plane(all->player.dir, &all->player.plane);
+	remove_player_map_position(all);
 }
 //
 // void	print_map(char **map)
