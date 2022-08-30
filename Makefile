@@ -53,7 +53,7 @@ SRC_FILES	=	main.c \
 				player_hook.c \
 				utils.c \
 				utils_mlx.c
-				
+
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 #------------------------------------#
@@ -74,7 +74,7 @@ HEADER = include/cub3d.h
 #------------------------------------#
 
 INC_FLAGS	=	$(INC) $(LIBFT_INC) $(MLX_INC)
-LD_FLAGS	=	$(LIBFT_LD) $(MLX_LD)
+LD_FLAGS	=	$(LIBFT_LD) $(MLX_LD) -lm
 
 #------------------------------------------------------------------------------#
 #                                                                              #
