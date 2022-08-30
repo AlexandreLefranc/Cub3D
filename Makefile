@@ -43,11 +43,12 @@ SRC_FILES	=	main.c \
 				create_window.c \
 				display_minimap.c \
 				init.c \
+				init_player.c \
 				parser.c \
 				parser_info.c \
 				parser_map.c \
-				utils.c \
-				init_player.c
+				player_hook.c \
+				utils.c
 
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
