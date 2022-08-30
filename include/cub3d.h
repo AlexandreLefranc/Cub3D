@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/29 17:39:27 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:27:14 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 # define SCREENW 1800
 # define SCREENH 900
-# define TILE 16
+# define TILE 8
 
 typedef struct s_data {
 	void	*img;
@@ -126,7 +126,12 @@ int		extract_texture_rgb(int fd, t_all *all);
 // parser_map.c
 int		extract_map(int fd, t_all *all);
 
+// utils_mlx.c
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	my_mlx_square(t_data *data, int posx, int posy, int color);
+
 // utils.c
+void	destroy_all(t_all *all);
 void	drain_fd(int fd);
 
 #endif

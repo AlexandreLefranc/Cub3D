@@ -50,6 +50,7 @@ SRC_FILES	=	main.c \
 				parser_info.c \
 				parser_map.c \
 				utils.c \
+				utils_mlx.c \
 				init_player.c
 
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))

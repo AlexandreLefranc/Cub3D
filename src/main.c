@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:13:37 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/29 17:52:45 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:27:38 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,32 +79,6 @@ static void	print_all(t_all *all)
 	printf("\n");
 }
 
-static void	destroy_all(t_all *all)
-{
-	if (all->texture_no.img != NULL)
-		mlx_destroy_image(all->mlx, all->texture_no.img);
-	if (all->texture_so.img != NULL)
-		mlx_destroy_image(all->mlx, all->texture_so.img);
-	if (all->texture_we.img != NULL)
-		mlx_destroy_image(all->mlx, all->texture_we.img);
-	if (all->texture_ea.img != NULL)
-		mlx_destroy_image(all->mlx, all->texture_ea.img);
-	if (all->mlx != NULL && all->win != NULL)
-	{
-		mlx_destroy_window(all->mlx, all->win);
-		mlx_destroy_display(all->mlx);
-		free(all->mlx);
-	}
-	ft_strtabfree(all->map);
-	free(all->floor.raw);
-	free(all->ceiling.raw);
-	free(all->texture_no.path);
-	free(all->texture_so.path);
-	free(all->texture_we.path);
-	free(all->texture_ea.path);
-	free(all);
-}
-
 int	main(int argc, char **argv)
 {
 	t_all	*all;
@@ -121,8 +95,9 @@ int	main(int argc, char **argv)
 		return (destroy_all(all), 1);
 	if (create_texture(all) != 0)
 		return (destroy_all(all), 1);
-	// display_minimap(all, 20, 20);
+	display_minimap(all, 20, 20);
 	print_all(all);
+	sleep(5);
 	destroy_all(all);
 	return (0);
 }

@@ -6,37 +6,11 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:07:25 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/29 17:03:06 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:15:45 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-static void	my_mlx_square(t_data *data, int posx, int posy, int color)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < TILE)
-	{
-		x = 0;
-		while (x < TILE)
-		{
-			my_mlx_pixel_put(data, posx + x, posy + y, color);
-			x++;
-		}
-		y++;
-	}
-}
 
 static void	draw_minimap(t_all *all, t_data *img)
 {
@@ -50,14 +24,14 @@ static void	draw_minimap(t_all *all, t_data *img)
 		while (x < ft_strlen(all->map[y]))
 		{
 			if (all->map[y][x] == '1')
-				my_mlx_square(img, x * TILE, y * TILE, 0x00FF0000);
-			if (all->map[y][x] == '0')
-				my_mlx_square(img, x * TILE, y * TILE, 0x0000FF00);
-			display_player(all, img);
+				my_mlx_square(img, x * TILE, y * TILE, 0x00777777);
+			else
+				my_mlx_square(img, x * TILE, y * TILE, 0x00FFFFFF);
 			x++;
 		}
 		y++;
 	}
+	display_player(all, img);
 }
 
 int	display_minimap(t_all *all, int offsetx, int offsety)
@@ -66,6 +40,7 @@ int	display_minimap(t_all *all, int offsetx, int offsety)
 
 	img.img = mlx_new_image(all->mlx, ft_strlen(all->map[0]) * TILE,
 			ft_strtabsize(all->map) * TILE);
+	printf("Create new image %lu x %lu\n", ft_strlen(all->map[0]) * TILE, ft_strtabsize(all->map) * TILE);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
 	draw_minimap(all, &img);

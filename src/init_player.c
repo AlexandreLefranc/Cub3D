@@ -2,17 +2,17 @@
 
 static char	find_player_position(char **map, int *x, int *y)
 {
-	while (map[*x])
+	while (map[*y])
 	{
-		*y = 0;
-		while (map[*x][*y])
+		*x = 0;
+		while (map[*y][*x])
 		{
-			if (map[*x][*y] == 'N' || map[*x][*y] == 'S' || map[*x][*y] == 'W'
-				|| map[*x][*y] == 'E')
-				return (map[*x][*y]);
-			(*y)++;
+			if (map[*y][*x] == 'N' || map[*y][*x] == 'S' || map[*y][*x] == 'W'
+				|| map[*y][*x] == 'E')
+				return (map[*y][*x]);
+			(*x)++;
 		}
-		(*x)++;
+		(*y)++;
 	}
 	return ('\0');
 }
