@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/30 15:51:28 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:13:35 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define SCREENW 1800
 # define SCREENH 900
 # define TILE 32
+# define ROTSPEED 0.04
 
 typedef struct s_data {
 	void	*img;
@@ -105,7 +106,7 @@ int		create_window(t_all *all);
 
 // init_player.c
 void	init_player(t_all *all);
-void	player_plane(t_vec dir, t_vec *plane);
+void	player_plane(t_all *all);
 
 // display_minmap.c
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -117,9 +118,6 @@ void	display_player(t_all *all, t_data *img);
 // init.c
 t_all	*init_all(void);
 
-// init_player.c
-void	init_player(t_player *player, char **map);
-
 // parser.c
 int		parser(int argc, char **argv, t_all *all);
 
@@ -128,6 +126,9 @@ int		extract_texture_rgb(int fd, t_all *all);
 
 // parser_map.c
 int		extract_map(int fd, t_all *all);
+
+//player_hook.c
+int		camera_hook(int keycode, t_all *all);
 
 // utils_mlx.c
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
