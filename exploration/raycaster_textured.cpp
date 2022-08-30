@@ -76,7 +76,7 @@ Uint32 buffer[screenHeight][screenWidth];
 
 int main(int /*argc*/, char */*argv*/[])
 {
-	double posX = 22.0, posY = 11.5;	//x and y start position
+	double posX = 1.5, posY = 1.5;	//x and y start position
 	double dirX = -1.0, dirY = 0.0; //initial direction vector
 	double planeX = 0.0, planeY = 0.66; //the 2d raycaster version of camera plane
 
@@ -122,6 +122,7 @@ int main(int /*argc*/, char */*argv*/[])
 	//start the main loop
 	while(!done())
 	{
+		printf("dirx=%f|diry=%f|planex=%f|planey=%f\n", dirX, dirY, planeX, planeY);
 		// std::cout << "planeX = " << planeX << " | planeY = " << planeY <<std::endl;
 		for(int x = 0; x < w; x++)
 		{

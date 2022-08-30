@@ -11,7 +11,7 @@
 NAME	=	cub3d
 
 CC		=	clang
-CFLAGS	=	-Wall -Wextra -Werror -g3
+CFLAGS	=	-Wall -Wextra -Werror -g3 # -Wno-error=unused-function
 INC		=	-I include
 
 #------------------------------------#
@@ -36,10 +36,18 @@ MLX_LD	=	-lmlx -lXext -lX11 -L $(MLX_DIR)
 #               SOURCES              #
 #------------------------------------#
 
-SRC_DIR		=	testLouiseA/
-SRC_FILES	=	main.c
-				# init.c \
-				# parser.c
+SRC_DIR		=	src/
+SRC_FILES	=	main.c \
+				check_rgb.c \
+				create_texture.c \
+				create_window.c \
+				display_minimap.c \
+				init.c \
+				parser.c \
+				parser_info.c \
+				parser_map.c \
+				utils.c \
+				init_player.c
 
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
@@ -70,10 +78,8 @@ LD_FLAGS	=	$(LIBFT_LD) $(MLX_LD)
 #------------------------------------------------------------------------------#
 
 all: $(NAME)
-	@echo "\033[0;32mProgram $(NAME) created !\033[0m"
 
 $(NAME): $(LIBFT_A) $(MLX_A) $(OBJ)
-	@echo "\033[0;36mLinking objects !\033[0m"
 	$(CC) $(CFLAGS) $(OBJ) $(INC_FLAGS) $(LD_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
