@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/29 13:22:54 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:45:13 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ int		display_minimap(t_all *all, int offsetx, int offsety);
 
 // init.c
 t_all	*init_all(void);
+
+// init_player.c
+void	init_player(t_player *player, char **map);
 
 // parser.c
 int		parser(int argc, char **argv, t_all *all);
