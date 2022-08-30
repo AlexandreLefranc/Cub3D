@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:50:30 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/26 15:05:18 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/29 18:01:43 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	is_valid_identifier(char **strtab, t_all *all)
 {
 	if (ft_strtabsize(strtab) != 2)
-		return (false);
+		return (printf("Error: Invalid identifier:%s\n", strtab[0]), false);
 	if (ft_strcmp(strtab[0], "NO") == 0 && all->texture_no.path == NULL)
 		return (true);
 	if (ft_strcmp(strtab[0], "SO") == 0 && all->texture_so.path == NULL)

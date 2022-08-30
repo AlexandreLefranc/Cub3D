@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:47:12 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/26 16:46:19 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:45:05 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ int	extract_map(int fd, t_all *all)
 		line = get_next_line(fd);
 	}
 	free(line);
+	if (all->map == NULL)
+		return (printf("Wesh ya pas dmap\n"), 1);
 	if (pad_map(all) != 0)
 		return (1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:54:29 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/08/25 16:50:25 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:48:51 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static int	line_borders_check(char **map)
 	return (1);
 }
 
-int	map_is_valid(char **map)
+bool	map_is_valid(char **map)
 {
 	int	line;
 	int	column;
@@ -125,26 +125,26 @@ int	map_is_valid(char **map)
 	player = 0;
 	line = 0;
 	if (line_borders_check(map) == 0)
-		return (0);
+		return (false);
 	while (map[line] && line < (int)ft_strtabsize(map))
 	{
 		column = 0;
 		if (column_borders_check(map[line]) == 0)
-			return (0);
+			return (false);
 		while (map[line][column] && column < (int)ft_strlen(map[line]))
 		{
 			if (char_is_valid(map[line][column], line, column, &player) == 1
 				&& spaces_are_valid(line, column, map) == 1)
 				column++;
 			else
-				return (0);
+				return (false);
 		}
 		line++;
 	}
 	if (player == 0)
 	{
 		printf("no player\n");
-		return (0);
+		return (false);
 	}
-	return (1);
+	return (true);
 }
