@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/30 16:13:35 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:02:45 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define SCREENH 900
 # define TILE 32
 # define ROTSPEED 0.04
+# define MOVESPEED 0.01
 
 typedef struct s_data {
 	void	*img;
@@ -128,7 +129,7 @@ int		extract_texture_rgb(int fd, t_all *all);
 int		extract_map(int fd, t_all *all);
 
 //player_hook.c
-int		camera_hook(int keycode, t_all *all);
+int		key_hook(int keycode, t_all *all);
 
 // utils_mlx.c
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

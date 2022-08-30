@@ -3,7 +3,11 @@
 // (x * cos(0,0174533)) + (-sin(0,0174533) * y) = x'
 // (sin(0,0174533) * x) + (cos(0,0174533) * y) = y'
 
-int	camera_hook(int keycode, t_all *all)
+// creer une variable temporaire dans laquelle on stock ntore nouvelle position
+// souaitee, si cette position est ok (pas un 1) alors on peut y aller
+// sinon on empeche notre camera d'y aller
+
+int	key_hook(int keycode, t_all *all)
 {
 	double	old_dir_x;
 	double	old_dir_y;
@@ -11,43 +15,42 @@ int	camera_hook(int keycode, t_all *all)
 	old_dir_x = all->player.dir.x;
 	old_dir_y = all->player.dir.y;
 
-	printf("old_dir_x = %f\n", all->player.dir.x);
-	printf("old_dir_y = %f\n", all->player.dir.y);
-
 	if (keycode == 65361)  // fleche GAUCHE
 	{
-		printf("Moving counter clockwise\n");
 		all->player.dir.x = (old_dir_x * cos(-ROTSPEED)) + (-sin(-ROTSPEED) * old_dir_y);
 		all->player.dir.y = (sin(-ROTSPEED) * old_dir_x) + (cos(-ROTSPEED) * old_dir_y);
 		player_plane(all);
-		printf("new dir_x = %f\n", all->player.dir.x);
-		printf("new dir_y = %f\n", all->player.dir.y);
-		printf("new plane_x = %f\n", all->player.plane.x);
-		printf("new plane_y = %f\n", all->player.plane.y);
-		printf("\n");
-		display_minimap(all, 20, 20);
 	}
 	else if (keycode == 65363)  // fleche DROITE
 	{
-		printf("Moving clockwise\n");
 		all->player.dir.x = (old_dir_x * cos(ROTSPEED)) + (-sin(ROTSPEED) * old_dir_y);
 		all->player.dir.y = (sin(ROTSPEED) * old_dir_x) + (cos(ROTSPEED) * old_dir_y);
 		player_plane(all);
-		printf("new dir_x = %f\n", all->player.dir.x);
-		printf("new dir_y = %f\n", all->player.dir.y);
-		printf("new plane_x = %f\n", all->player.plane.x);
-		printf("new plane_y = %f\n", all->player.plane.y);
-		printf("\n");
-		display_minimap(all, 20, 20);
 	}
-	else if (keycode == 65307)
+	else if (keycode == 97) // A (moving left)
 	{
-		printf("I'm leaving this place...");
-		mlx_destroy_window(all->mlx, all->win);
-		exit (1);
+		all->player.pos.x += all->player.dir.y * MOVESPEED;
+		all->player.pos.y -= all->player.dir.x * MOVESPEED;
 	}
-
-	return (0);
+	else if (keycode == 100) // D (moving right)
+	{
+		all->player.pos.x -= all->player.dir.y * MOVESPEED;
+		all->player.pos.y += all->player.dir.x * MOVESPEED;
+	}
+	else if (keycode == 119) // W (moving forwards)
+	{
+			all->player.pos.x += all->player.dir.x * MOVESPEED;
+			all->player.pos.y += all->player.dir.y * MOVESPEED;
+	}
+	else if (keycode == 115) // S (moving backwards)
+	{
+			all->player.pos.x -= all->player.dir.x * MOVESPEED;
+			all->player.pos.y -= all->player.dir.y * MOVESPEED;
+	}
+	else
+		return (0);
+	display_minimap(all, 20, 20);
+	return (1);
 }
 
 // int	main(int argc, char **argv)
