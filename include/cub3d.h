@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/30 15:31:54 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:08:43 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ typedef struct s_player
 	t_vec	plane;
 }	t_player;
 
+typedef struct s_raycast
+{
+	double	dist;
+	
+}	t_raycast;
+
 typedef struct s_all
 {
 	void		*mlx;
@@ -86,6 +92,7 @@ typedef struct s_all
 	t_texture	texture_we;
 	t_texture	texture_ea;
 	t_player	player;
+	t_raycast	rc;
 }	t_all;
 
 // check_map.c

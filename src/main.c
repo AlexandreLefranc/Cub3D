@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:13:37 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/30 15:30:49 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:04:05 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,8 @@ int	main(int argc, char **argv)
 		return (destroy_all(all), 1);
 	if (create_texture(all) != 0)
 		return (destroy_all(all), 1);
-	display_minimap(all, 20, 20);
+	// display_minimap(all, 20, 20);
 	print_all(all);
-	sleep(5);
-	all->player.dir.x = 0.5;
-	all->player.dir.y = 0.5;
-	display_minimap(all, 20, 20);
 	sleep(5);
 	destroy_all(all);
 	return (0);
