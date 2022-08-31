@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:30:39 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/31 12:37:58 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/31 14:50:20 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,18 @@ void	display_player(t_all *all, t_data *img)
 	start.y = (int)(all->player.pos.y * TILE);
 	end.x = (int)((all->player.pos.x + all->player.dir.x) * TILE);
 	end.y = (int)((all->player.pos.y + all->player.dir.y) * TILE);
+	DDA(img, start, end, 0);
+
+	start.x = (int)(all->player.pos.x * TILE);
+	start.y = (int)(all->player.pos.y * TILE);
+	end.x = (int)((all->player.pos.x + all->player.dir.x / 2 + all->player.plane.x) * TILE);
+	end.y = (int)((all->player.pos.y + all->player.dir.y / 2 + all->player.plane.y) * TILE);
+	DDA(img, start, end, 0);
+
+	start.x = (int)(all->player.pos.x * TILE);
+	start.y = (int)(all->player.pos.y * TILE);
+	end.x = (int)((all->player.pos.x + all->player.dir.x / 2 - all->player.plane.x) * TILE);
+	end.y = (int)((all->player.pos.y + all->player.dir.y / 2 - all->player.plane.y) * TILE);
 	DDA(img, start, end, 0);
 	draw_player_box(img, start, 0x00FF4500);
 }

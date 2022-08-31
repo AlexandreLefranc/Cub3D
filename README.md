@@ -51,9 +51,78 @@ Verifier la map:
 
 https://lodev.org/cgtutor/raycasting.html
 
-## Maths
+## Maths du raycasting
 
-$$2+3$$
+On a notre vecteur position $\overrightarrow{pos}$
+$$
+\overrightarrow{pos} =
+	\begin{pmatrix}
+	pos_x \\
+	pos_y
+	\end{pmatrix}
+$$
+
+On a notre vecteur direction $\overrightarrow{dir}$
+
+$$
+\overrightarrow{dir} =
+	\begin{pmatrix}
+	dir_x \\
+	dir_y
+	\end{pmatrix}
+$$
+
+et son vecteur $\overrightarrow{plane}$ etant une rotation de $\pi/2$ de $\overrightarrow{dir}$
+
+$$
+\overrightarrow{plane} =
+	\begin{pmatrix}
+	plane_x \\
+	plane_y
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	- 0.66 \times dir_y \\
+	0.66 \times dir_x
+	\end{pmatrix}
+$$
+
+A partir de ces donnees et de la carte, nous devons faire un rendu de la scene.
+
+Voici les grandes etapes. Pour chaque colonne de pixel:
+
+1. Trouver le vecteur unitaire du rayon qu'on lance
+2. Determiner la plus courte distance que ce rayon parcours avant de rencontrer un mur. Sauvegarder les coordonnees de l intersection.
+3. Determiner l orientation du mur
+4. Corriger cette distance pour le fisheye
+5. Grace a la distance, determiner la hauteur d affichage du mur sur la colonne de pixel.
+6. Grace aux coordonnees de l intersection. Determiner quelle colonne de la texture sera prise pour modele
+7. Imprimer de haut en bas sur l image le ciel, puis le nombre de pixel correspondant a la texture, puis le sol.
+
+### Trouver le vecteur unitaire du rayon
+
+Pour une colonne de pixel $x \in [0, \text{ScreenWidth}[$
+
+Definissons la fonction $ray\_deviance(x) \in [-1, 1[$
+
+$$
+ray\_deviance(x) = \frac{2 \times x}{\text{ScreenWidth}} - 1
+$$
+
+On peut calculer le vecteur $\overrightarrow{ray}$
+
+$$
+\overrightarrow{ray} = \overrightarrow{dir} + ray\_deviance(x) \times \overrightarrow{plane}
+$$
+
+Le vecteur $\overrightarrow{ray}$ n etant pas unitaire, on le divise par sa norme
+
+$$
+\overrightarrow{ray} = \frac{\overrightarrow{dir} + ray\_deviance(x) \times \overrightarrow{plane}}{||\overrightarrow{dir} + ray\_deviance(x) \times \overrightarrow{plane}||}
+$$
+
+
+
 
 # Plan de developpement
 

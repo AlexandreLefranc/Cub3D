@@ -62,8 +62,8 @@ static void	init_player_dir(char **map, t_vec *dir)
 
 void	player_plane(t_all *all)
 {
-	all->player.plane.x = -0.66 * all->player.dir.y;
-	all->player.plane.y = 0.66 * all->player.dir.x;
+	all->player.plane.x = -FOVRATIO * all->player.dir.y;
+	all->player.plane.y = FOVRATIO * all->player.dir.x;
 }
 
 static void	remove_player_map_position(t_all *all)

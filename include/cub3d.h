@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/31 13:51:19 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:45:07 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define SCREENW 1800
 # define SCREENH 900
 # define TILE 32
+# define FOVRATIO 0.66
 # define ROTSPEED 0.04
 # define MOVESPEED 0.1
 
@@ -77,6 +78,7 @@ typedef struct s_player
 
 typedef struct s_raycast
 {
+	t_vec	ray;
 	double	dist;
 
 }	t_raycast;
@@ -138,9 +140,15 @@ int		extract_map(int fd, t_all *all);
 //player_hook.c
 int		key_hook(int keycode, t_all *all);
 
+// raycasting.c
+int		render_raycasting(t_all *all);
+
 // utils_mlx.c
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	my_mlx_square(t_data *data, int posx, int posy, int color);
+
+// utils_vec.c
+double	norm(t_vec v);
 
 // utils.c
 void	destroy_all(t_all *all);
