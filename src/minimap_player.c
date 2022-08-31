@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:30:39 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/30 15:27:01 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:37:58 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static void	draw_player_box(t_data *img, t_point start, int color)
 	int i;
 	int j;
 
-	i = -1;
-	while (i < 2)
+	i = -2;
+	while (i < 3)
 	{
-		j = -1;
-		while (j < 2)
+		j = -2;
+		while (j < 3)
 		{
 			my_mlx_pixel_put(img, start.x + i, start.y + j, color);
 			j++;
@@ -68,7 +68,7 @@ void	display_player(t_all *all, t_data *img)
 	end.x = (int)((all->player.pos.x + all->player.dir.x) * TILE);
 	end.y = (int)((all->player.pos.y + all->player.dir.y) * TILE);
 	DDA(img, start, end, 0);
-	draw_player_box(img, start, 0x00008000);
+	draw_player_box(img, start, 0x00FF4500);
 }
 
 // int	main()

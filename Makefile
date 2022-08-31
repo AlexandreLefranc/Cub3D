@@ -46,12 +46,13 @@ SRC_FILES	=	main.c \
 				minimap_display.c \
 				minimap_player.c \
 				init.c \
+				init_player.c \
 				parser.c \
 				parser_info.c \
 				parser_map.c \
+				player_hook.c \
 				utils.c \
-				utils_mlx.c \
-				init_player.c
+				utils_mlx.c
 
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
@@ -73,7 +74,7 @@ HEADER = include/cub3d.h
 #------------------------------------#
 
 INC_FLAGS	=	$(INC) $(LIBFT_INC) $(MLX_INC)
-LD_FLAGS	=	$(LIBFT_LD) $(MLX_LD)
+LD_FLAGS	=	$(LIBFT_LD) $(MLX_LD) -lm
 
 #------------------------------------------------------------------------------#
 #                                                                              #

@@ -60,10 +60,10 @@ static void	init_player_dir(char **map, t_vec *dir)
 	}
 }
 
-void	player_plane(t_vec dir, t_vec *plane)
+void	player_plane(t_all *all)
 {
-	plane->x = -0.66 * dir.y;
-	plane->y = 0.66 * dir.x;
+	all->player.plane.x = -0.66 * all->player.dir.y;
+	all->player.plane.y = 0.66 * all->player.dir.x;
 }
 
 static void	remove_player_map_position(t_all *all)
@@ -90,7 +90,7 @@ void	init_player(t_all *all)
 {
 	init_player_pos(all->map, &all->player.pos);
 	init_player_dir(all->map, &all->player.dir);
-	player_plane(all->player.dir, &all->player.plane);
+	player_plane(all);
 	remove_player_map_position(all);
 }
 //

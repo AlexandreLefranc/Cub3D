@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/31 12:08:43 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/31 13:51:19 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define SCREENW 1800
 # define SCREENH 900
 # define TILE 32
+# define ROTSPEED 0.04
+# define MOVESPEED 0.1
 
 typedef struct s_data {
 	void	*img;
@@ -76,7 +78,7 @@ typedef struct s_player
 typedef struct s_raycast
 {
 	double	dist;
-	
+
 }	t_raycast;
 
 typedef struct s_all
@@ -112,7 +114,7 @@ int		create_window(t_all *all);
 
 // init_player.c
 void	init_player(t_all *all);
-void	player_plane(t_vec dir, t_vec *plane);
+void	player_plane(t_all *all);
 
 // display_minmap.c
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -133,12 +135,16 @@ int		extract_texture_rgb(int fd, t_all *all);
 // parser_map.c
 int		extract_map(int fd, t_all *all);
 
+//player_hook.c
+int		key_hook(int keycode, t_all *all);
+
 // utils_mlx.c
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	my_mlx_square(t_data *data, int posx, int posy, int color);
 
 // utils.c
 void	destroy_all(t_all *all);
+int		destroy_all_exit(t_all *all);
 void	drain_fd(int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:48:18 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/30 14:13:26 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:24:35 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ void	destroy_all(t_all *all)
 	free(all->texture_we.path);
 	free(all->texture_ea.path);
 	free(all);
+}
+
+int	destroy_all_exit(t_all *all)
+{
+	destroy_all(all);
+	exit(0);
+	return (0);
 }
 
 void	drain_fd(int fd)

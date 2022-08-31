@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:13:37 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/31 12:04:05 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/08/31 13:51:24 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,13 @@ int	main(int argc, char **argv)
 		return (destroy_all(all), 1);
 	// display_minimap(all, 20, 20);
 	print_all(all);
+<<<<<<< HEAD
 	sleep(5);
+=======
+	mlx_hook(all->win, 02, (1L<<0), key_hook, all);
+	mlx_hook(all->win, 17, 0, destroy_all_exit, all);
+	mlx_loop(all->mlx);
+>>>>>>> ea8be599e33c5c366218d174a0ad97e035660218
 	destroy_all(all);
 	return (0);
 }
