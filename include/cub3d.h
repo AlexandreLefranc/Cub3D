@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/30 17:02:45 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:24:47 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define SCREENH 900
 # define TILE 32
 # define ROTSPEED 0.04
-# define MOVESPEED 0.01
+# define MOVESPEED 0.1
 
 typedef struct s_data {
 	void	*img;
@@ -137,6 +137,7 @@ void	my_mlx_square(t_data *data, int posx, int posy, int color);
 
 // utils.c
 void	destroy_all(t_all *all);
+int		destroy_all_exit(t_all *all);
 void	drain_fd(int fd);
 
 #endif
