@@ -1,3 +1,9 @@
+---
+header-includes:
+  - \usepackage{algorithmic}
+---
+
+
 # Table of content
 
 [[toc]]
@@ -121,7 +127,24 @@ $$
 \overrightarrow{ray} = \frac{\overrightarrow{dir} + ray\_deviance(x) \times \overrightarrow{plane}}{||\overrightarrow{dir} + ray\_deviance(x) \times \overrightarrow{plane}||}
 $$
 
+A ce moment, on definit egalement le sens de changement sur les axes $x$ et $y$, represente par $side_x$ et $side_y$ respectivement:
 
+$$
+side_x = sign(ray_x) \\
+side_y = sign(ray_y)
+$$
+
+Ainsi, $side_x$ et $side_y$ auront pour valeur $-1$ ou $1$.
+
+(Pour une resolution 1800x900, ca met environ 70 microsecondes)
+
+
+
+### Determiner la distance, les coordonnees d intersection et le cote intersecte
+
+Afin d eviter de tester les murs pour chaque pixel, rendant le programme tres tres lourd a executer, et donc 
+
+### Corriger la distance pour le fisheye
 
 
 # Plan de developpement

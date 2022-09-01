@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/31 18:45:07 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:08:08 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct s_player
 typedef struct s_raycast
 {
 	t_vec	ray;
+	int		side_x;
+	int		side_y;
 	double	dist;
 
 }	t_raycast;

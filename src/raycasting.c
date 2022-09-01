@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:04:31 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/31 16:33:48 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:10:25 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,15 @@ static	void	get_ray(t_all *all, int x)
 	norm_ray = norm(all->rc.ray);
 	all->rc.ray.x = all->rc.ray.x / norm_ray;
 	all->rc.ray.y = all->rc.ray.y / norm_ray;
-	// printf("ray_deviance = %f | x = %d | ray.x = %f | ray_dir.y = %f\n", ray_deviance, x, all->rc.ray_dir.x, all->rc.ray_dir.y);
+	// printf("ray_deviance = %f | x = %d | ray.x = %f | ray.y = %f\n", ray_deviance, x, all->rc.ray.x, all->rc.ray.y);
+	if (all->rc.ray.x < 0)
+		all->rc.side_x = -1;
+	else
+		all->rc.side_x = 1;
+	if (all->rc.ray.y < 0)
+		all->rc.side_y = -1;
+	else
+		all->rc.side_y = 1;
 }
 
 int	render_raycasting(t_all *all)
