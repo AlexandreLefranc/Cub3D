@@ -69,6 +69,8 @@ $\lfloor x \rfloor$ est la partie entiere inferieur de x. (`floor` en programmat
 
 **Contexte**
 
+Je vais essayer de coller le plus possible a lodev, avec des modifications dans les maths la ou je trouve que ma facon de faire est plus simple. Sans pour autant changer le fond de la methode.
+
 On a notre vecteur position $\overrightarrow{pos}$
 $$
 \overrightarrow{pos} =
@@ -234,8 +236,8 @@ $$
 \begin{equation}
 \left\{
 \begin{aligned}
-	PB &= ray_x - \lfloor ray_x \rfloor &\text{si } side_x < 0\\
-	PB &= \lfloor ray_x \rfloor + 1 - ray_x &\text{sinon}
+	PB &= pos_x - \lfloor pos_x \rfloor &\text{si } side_x < 0\\
+	PB &= \lfloor pos_x \rfloor + 1 - pos_x &\text{sinon}
 \end{aligned}
 \right.
 \end{equation}
@@ -247,8 +249,8 @@ $$
 \begin{equation}
 \left\{
 \begin{aligned}
-	sideDistX &= deltaDistX \times (ray_x - \lfloor ray_x \rfloor) &\text{si } side_x < 0\\
-	sideDistX &= deltaDistX \times (\lfloor ray_x \rfloor + 1 - ray_x) &\text{sinon}
+	sideDistX &= deltaDistX \times (pos_x - \lfloor pos_x \rfloor) &\text{si } side_x < 0\\
+	sideDistX &= deltaDistX \times (\lfloor pos_x \rfloor + 1 - pos_x) &\text{sinon}
 \end{aligned}
 \right.
 \end{equation}
@@ -262,8 +264,8 @@ $$
 \begin{equation}
 \left\{
 \begin{aligned}
-	sideDistY &= deltaDistY \times (ray_y - \lfloor ray_y \rfloor) &\text{si } side_y < 0\\
-	sideDistY &= deltaDistY \times (\lfloor ray_y \rfloor + 1 - ray_y) &\text{sinon}
+	sideDistY &= deltaDistY \times (pos_y - \lfloor pos_y \rfloor) &\text{si } side_y < 0\\
+	sideDistY &= deltaDistY \times (\lfloor pos_y \rfloor + 1 - pos_y) &\text{sinon}
 \end{aligned}
 \right.
 \end{equation}

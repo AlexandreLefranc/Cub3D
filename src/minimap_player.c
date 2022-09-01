@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:30:39 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/31 14:50:20 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:09:26 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ void	display_player(t_all *all, t_data *img)
 
 	start.x = (int)(all->player.pos.x * TILE);
 	start.y = (int)(all->player.pos.y * TILE);
-	end.x = (int)((all->player.pos.x + all->player.dir.x / 2 + all->player.plane.x) * TILE);
-	end.y = (int)((all->player.pos.y + all->player.dir.y / 2 + all->player.plane.y) * TILE);
+	end.x = (int)((all->player.pos.x + (all->player.dir.x + all->player.plane.x) / 2) * TILE);
+	end.y = (int)((all->player.pos.y + (all->player.dir.y + all->player.plane.y) / 2) * TILE);
 	DDA(img, start, end, 0);
 
 	start.x = (int)(all->player.pos.x * TILE);
 	start.y = (int)(all->player.pos.y * TILE);
-	end.x = (int)((all->player.pos.x + all->player.dir.x / 2 - all->player.plane.x) * TILE);
-	end.y = (int)((all->player.pos.y + all->player.dir.y / 2 - all->player.plane.y) * TILE);
+	end.x = (int)((all->player.pos.x + (all->player.dir.x - all->player.plane.x) * 4) * TILE);
+	end.y = (int)((all->player.pos.y + (all->player.dir.y - all->player.plane.y) * 4) * TILE);
 	DDA(img, start, end, 0);
 	draw_player_box(img, start, 0x00FF4500);
 }

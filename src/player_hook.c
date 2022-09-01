@@ -78,6 +78,7 @@ int	key_hook(int keycode, t_all *all)
 	else
 		return (0);
 	display_minimap(all, 20, 20);
+	render_raycasting(all);
 	return (1);
 }
 

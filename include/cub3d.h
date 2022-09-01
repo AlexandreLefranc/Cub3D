@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/01 19:34:57 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:36:29 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include "mlx.h"
 
 # define SCREENW 1800
-# define SCREENH 900
-# define TILE 32
+# define SCREENH 700
+# define TILE 48
 # define FOVRATIO 0.66
 # define ROTSPEED 0.04
 # define MOVESPEED 0.1
@@ -85,7 +85,10 @@ typedef struct s_raycast
 	double	deltaDistY;
 	double	sideDistX;
 	double	sideDistY;
-
+	int		side;
+	int		mapX;
+	int		mapY;
+	t_vec	intersect;
 }	t_raycast;
 
 typedef struct s_all
