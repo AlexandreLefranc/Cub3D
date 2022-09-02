@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/01 21:36:29 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:05:26 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,23 @@ typedef struct s_player
 
 typedef struct s_raycast
 {
-	t_vec	ray;
-	int		side_x;
-	int		side_y;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	sideDistX;
-	double	sideDistY;
-	int		side;
-	int		mapX;
-	int		mapY;
-	t_vec	intersect;
+	t_vec		ray;
+	int			side_x;
+	int			side_y;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		sideDistX;
+	double		sideDistY;
+	int			side;
+	int			mapX;
+	int			mapY;
+	double		wall_dist;
+	t_texture	*texture;
+	int			wall_height;
+	double		wall_x;
+	int			texture_x;
+	int			draw_start;
+	int			draw_end;
 }	t_raycast;
 
 typedef struct s_all

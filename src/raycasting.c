@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:04:31 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/01 21:54:55 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:39:55 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,26 +106,115 @@ static void	find_wall(t_all *all)
 		if (all->map[all->rc.mapY][all->rc.mapX] == '1')
 		{
 			hit = 1;
-			printf("Hit at mapX = %d, mapY = %d\n", all->rc.mapX,all->rc.mapY);
+			// printf("Hit at mapX = %d, mapY = %d\n", all->rc.mapX,all->rc.mapY);
 		}
 	}
-	printf("dist=%f OU dist=%f\n", all->rc.sideDistX,all->rc.sideDistY);
+	// printf("dist=%f OU dist=%f\n", all->rc.sideDistX,all->rc.sideDistY);
+}
+
+static void	find_distance(t_all *all)
+{
+	if (all->rc.side == 0)
+		all->rc.wall_dist = all->rc.sideDistX - all->rc.deltaDistX;
+	else
+		all->rc.wall_dist = all->rc.sideDistY - all->rc.deltaDistY;
+	// printf("Distance =%f\n", all->rc.wall_dist);
+}
+
+static void	find_texture(t_all *all)
+{
+	if (all->rc.side_x == 1 && all->rc.side == 0)
+		all->rc.texture = &all->texture_we;
+	else if ((all->rc.side_x == 1 && all->rc.side == 1)
+		|| (all->rc.side_x == -1 && all->rc.side == 1))
+	{
+		if (all->rc.side_y == 1)
+			all->rc.texture = &all->texture_no;
+		else if (all->rc.side_y == -1)
+			all->rc.texture = &all->texture_so;
+	}
+	else if (all->rc.side_x == -1 && all->rc.side == 0)
+		all->rc.texture = &all->texture_ea;
+	// printf("Texture = %s\n", all->rc.texture->path);
+}
+
+static void	find_wall_height_and_texture_x(t_all *all)
+{
+	all->rc.wall_height = (int)(SCREENH / all->rc.wall_dist);
+	all->rc.draw_start = -all->rc.wall_height / 2 + SCREENH / 2;
+	if(all->rc.draw_start < 0)
+		all->rc.draw_start = 0;
+	all->rc.draw_end = all->rc.wall_height / 2 + SCREENH / 2;
+	if(all->rc.draw_end >= SCREENH)
+		all->rc.draw_end = SCREENH - 1;
+
+	// printf("pos.y = %f | wall_dist = %f | ray.y = %f\n", all->player.pos.y, all->rc.wall_dist, all->rc.ray.y);
+	if (all->rc.side == 0)
+		all->rc.wall_x = all->player.pos.y + all->rc.wall_dist * all->rc.ray.y;
+	else
+		all->rc.wall_x = all->player.pos.x + all->rc.wall_dist * all->rc.ray.x;
+	all->rc.wall_x -= floor((all->rc.wall_x));
+	// printf("wall_x = %f\n", all->rc.wall_x);
+
+	all->rc.texture_x = (int)(all->rc.wall_x * all->rc.texture->width);
+	// printf("texture_x = %d\n", all->rc.texture_x);
+
+	if(all->rc.side == 0 && all->rc.ray.x > 0)
+		all->rc.texture_x = all->rc.texture->width - all->rc.texture_x - 1;
+	if(all->rc.side == 1 && all->rc.ray.y < 0)
+		all->rc.texture_x = all->rc.texture->width - all->rc.texture_x - 1;
+	// printf("texture_x = %d\n", all->rc.texture_x);
+}
+
+static void	draw_column(t_all *all, t_data *img, int x)
+{
+	double	step;
+	double	tex_pos;
+	int		y;
+	int		tex_y;
+	// int		color;
+
+	y = all->rc.draw_start;
+	step = 1.0 * all->rc.texture->height / all->rc.wall_height;
+	tex_pos = (y - SCREENH / 2 + all->rc.wall_height / 2) * step;
+	while (y < all->rc.draw_end)
+	{
+		tex_y = (int)tex_pos & (all->rc.texture->height - 1);
+		tex_pos += step;
+		// color = all->rc.texture->img;
+		printf("truc = %s\n", (char *)all->rc.texture->img);
+		// printf("color = %d\n", color);
+		y++;
+	}
+	(void)img; (void)x;
 }
 
 int	render_raycasting(t_all *all)
 {
 	int	x;
+	t_data	img;
 
-	x = 0;
 	gettimeofday(&t0, NULL);
+	// img.img = mlx_new_image(all->mlx, ft_strlen(all->map[0]) * TILE,
+	// 		ft_strtabsize(all->map) * TILE);
+	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+	// 		&img.endian);
+	x = 0;
 	// while (x < SCREENW)
 	// {
 		get_ray(all, x);
 		get_usefull_distances(all);
 		// print_rc(all);
 		find_wall(all);
+		find_distance(all);
+		find_texture(all);
+		find_wall_height_and_texture_x(all);
+		draw_column(all, &img, x);
+
 		x++;
 	// }
+	// mlx_put_image_to_window(all->mlx, all->win, img.img, 0, 0);
+	// mlx_destroy_image(all->mlx, img.img);
 	gettimeofday(&t1, NULL);
 	printf("Elapsed time: %ld microseconds\n", (t1.tv_sec - t0.tv_sec) * 1000000 + (t1.tv_usec - t0.tv_usec));
 	return (0);

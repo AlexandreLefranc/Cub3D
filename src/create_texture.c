@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 18:23:19 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/26 18:49:04 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:32:37 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ int	create_texture(t_all *all)
 			&all->texture_no.width, &all->texture_no.height);
 	if (all->texture_no.img == NULL)
 		return (printf("Error: Could not load image\n"), 1);
+
+	// all->texture_no.img.addr = (char *)mlx_get_data_addr(all->texture_no.img,
+	// 		&all->texture_no.img->bits_per_pixel, &all->texture_no->line_length,
+	// 		&all->texture_no->endian);
+
+
 	all->texture_so.img = mlx_xpm_file_to_image(all->mlx, all->texture_so.path,
 			&all->texture_so.width, &all->texture_so.height);
 	if (all->texture_so.img == NULL)

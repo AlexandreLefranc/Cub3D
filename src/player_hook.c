@@ -67,7 +67,7 @@ int	key_hook(int keycode, t_all *all)
 	else if (keycode == 97 || keycode == 100 || keycode == 119 || keycode == 115)
 	{
 		move_player_position(keycode, all, &new_pos_x, &new_pos_y);
-		if (all->map[(int)new_pos_y][(int)new_pos_x] != '1')
+		if (all->map[(int)new_pos_y][(int)new_pos_x] == '0')
 		{
 			all->player.pos.x = new_pos_x;
 			all->player.pos.y = new_pos_y;
