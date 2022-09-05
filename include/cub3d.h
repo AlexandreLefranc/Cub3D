@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 15:23:52 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:06:51 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,8 @@ void	init_player(t_all *all);
 void	player_plane(t_all *all);
 
 // display_minmap.c
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	draw_minimap(t_all *all, t_data *img);
+void	draw_grid(t_all *all, t_data *img);
 int		display_minimap(t_all *all, int offsetx, int offsety);
 
 // display_player.c

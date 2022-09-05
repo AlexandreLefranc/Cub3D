@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:04:31 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 15:34:39 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:00:04 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,17 +212,18 @@ int	render_raycasting(t_all *all)
 	{
 		get_ray(all, x);
 		get_usefull_distances(all);
-		// print_rc(all);
 		find_wall(all);
 		find_distance(all);
 		find_texture(all);
-		// printf("color=0x%x\n", get_pixel_color(all->rc.texture, 0, 0));
 		find_wall_height_and_texture_x(all);
 		draw_column(all, &img, x);
-
 		x++;
 	}
+
+	draw_minimap(all, &img);
+
 	mlx_put_image_to_window(all->mlx, all->win, img.img, 0, 0);
+
 	mlx_destroy_image(all->mlx, img.img);
 	gettimeofday(&t1, NULL);
 	printf("Elapsed time: %ld microseconds\n", (t1.tv_sec - t0.tv_sec) * 1000000 + (t1.tv_usec - t0.tv_usec));

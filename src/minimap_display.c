@@ -6,13 +6,36 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:07:25 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 14:15:35 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:04:55 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_minimap(t_all *all, t_data *img)
+void	draw_grid(t_all *all, t_data *img)
+{
+	size_t	x;
+	size_t	y;
+	size_t	xmax;
+	size_t	ymax;
+
+	y = 0;
+	xmax = ft_strlen(all->map[y]);
+	ymax = ft_strtabsize(all->map);
+	while (y < ymax * TILE)
+	{
+		x = 0;
+		while (x < xmax * TILE)
+		{
+			if (y % TILE == 0 || x % TILE == 0)
+			my_mlx_pixel_put(img, x, y, 0x00000000);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_minimap(t_all *all, t_data *img)
 {
 	size_t	x;
 	size_t	y;
@@ -35,31 +58,10 @@ static void	draw_minimap(t_all *all, t_data *img)
 		}
 		y++;
 	}
+	draw_grid(all, img);
 	display_player(all, img);
 }
 
-static void	draw_grid(t_all *all, t_data *img)
-{
-	size_t	x;
-	size_t	y;
-	size_t	xmax;
-	size_t	ymax;
-
-	y = 0;
-	xmax = ft_strlen(all->map[y]);
-	ymax = ft_strtabsize(all->map);
-	while (y < ymax * TILE)
-	{
-		x = 0;
-		while (x < xmax * TILE)
-		{
-			if (y % TILE == 0 || x % TILE == 0)
-				my_mlx_pixel_put(img, x, y, 0x00000000);
-			x++;
-		}
-		y++;
-	}
-}
 
 int	display_minimap(t_all *all, int offsetx, int offsety)
 {
