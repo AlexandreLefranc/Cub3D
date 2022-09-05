@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:04:31 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/02 15:39:55 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:34:39 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,14 @@ static void	draw_column(t_all *all, t_data *img, int x)
 	double	tex_pos;
 	int		y;
 	int		tex_y;
-	// int		color;
+	int		color;
 
+	y = 0;
+	while (y < all->rc.draw_start)
+	{
+		my_mlx_pixel_put(img, x, y, 0x000000FF);
+		y++;
+	}
 	y = all->rc.draw_start;
 	step = 1.0 * all->rc.texture->height / all->rc.wall_height;
 	tex_pos = (y - SCREENH / 2 + all->rc.wall_height / 2) * step;
@@ -181,12 +187,15 @@ static void	draw_column(t_all *all, t_data *img, int x)
 	{
 		tex_y = (int)tex_pos & (all->rc.texture->height - 1);
 		tex_pos += step;
-		// color = all->rc.texture->img;
-		printf("truc = %s\n", (char *)all->rc.texture->img);
-		// printf("color = %d\n", color);
+		color = get_pixel_color(all->rc.texture, all->rc.texture_x, tex_y);
+		my_mlx_pixel_put(img, x, y, color);
 		y++;
 	}
-	(void)img; (void)x;
+	while (y < SCREENH)
+	{
+		my_mlx_pixel_put(img, x, y, 0x0000FF00);
+		y++;
+	}
 }
 
 int	render_raycasting(t_all *all)
@@ -195,26 +204,26 @@ int	render_raycasting(t_all *all)
 	t_data	img;
 
 	gettimeofday(&t0, NULL);
-	// img.img = mlx_new_image(all->mlx, ft_strlen(all->map[0]) * TILE,
-	// 		ft_strtabsize(all->map) * TILE);
-	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-	// 		&img.endian);
+	img.img = mlx_new_image(all->mlx, SCREENW, SCREENH);
+	img.addr = (unsigned int *)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+			&img.endian);
 	x = 0;
-	// while (x < SCREENW)
-	// {
+	while (x < SCREENW)
+	{
 		get_ray(all, x);
 		get_usefull_distances(all);
 		// print_rc(all);
 		find_wall(all);
 		find_distance(all);
 		find_texture(all);
+		// printf("color=0x%x\n", get_pixel_color(all->rc.texture, 0, 0));
 		find_wall_height_and_texture_x(all);
 		draw_column(all, &img, x);
 
 		x++;
-	// }
-	// mlx_put_image_to_window(all->mlx, all->win, img.img, 0, 0);
-	// mlx_destroy_image(all->mlx, img.img);
+	}
+	mlx_put_image_to_window(all->mlx, all->win, img.img, 0, 0);
+	mlx_destroy_image(all->mlx, img.img);
 	gettimeofday(&t1, NULL);
 	printf("Elapsed time: %ld microseconds\n", (t1.tv_sec - t0.tv_sec) * 1000000 + (t1.tv_usec - t0.tv_usec));
 	return (0);

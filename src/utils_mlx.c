@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:41:08 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/30 14:41:33 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:40:05 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	char	*dst;
+	unsigned int	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	dst = data->addr + (y * data->line_length / sizeof(*dst) + x);
+	*dst = color;
+}
+
+unsigned int	get_pixel_color(t_texture *tex, int x, int y)
+{
+	return (tex->data[y * tex->line_length / sizeof(unsigned int) + x]);
 }
 
 void	my_mlx_square(t_data *data, int posx, int posy, int color)

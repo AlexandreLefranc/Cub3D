@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/02 15:05:26 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:23:52 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@
 # include "mlx.h"
 
 # define SCREENW 1800
-# define SCREENH 700
-# define TILE 48
+# define SCREENH 900
+# define TILE 16
 # define FOVRATIO 0.66
 # define ROTSPEED 0.04
 # define MOVESPEED 0.1
 
 typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void			*img;
+	unsigned int	*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
 }	t_data;
 
 typedef struct s_point
@@ -65,6 +65,10 @@ typedef struct s_texture
 {
 	char	*path;
 	void	*img;
+	unsigned int	*data;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	int		width;
 	int		height;
 }	t_texture;
@@ -158,8 +162,9 @@ int		key_hook(int keycode, t_all *all);
 int		render_raycasting(t_all *all);
 
 // utils_mlx.c
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	my_mlx_square(t_data *data, int posx, int posy, int color);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+unsigned int	get_pixel_color(t_texture *tex, int x, int y);
+void			my_mlx_square(t_data *data, int posx, int posy, int color);
 
 // utils_vec.c
 double	norm(t_vec v);

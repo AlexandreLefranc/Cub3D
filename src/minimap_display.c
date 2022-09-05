@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:07:25 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/01 21:23:07 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:15:35 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	display_minimap(t_all *all, int offsetx, int offsety)
 
 	img.img = mlx_new_image(all->mlx, ft_strlen(all->map[0]) * TILE,
 			ft_strtabsize(all->map) * TILE);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+	img.addr = (unsigned int*)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
 	draw_minimap(all, &img);
 	draw_grid(all, &img);
