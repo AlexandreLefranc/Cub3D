@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:04:31 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 16:00:04 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:36:20 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ static void	draw_column(t_all *all, t_data *img, int x)
 	y = 0;
 	while (y < all->rc.draw_start)
 	{
-		my_mlx_pixel_put(img, x, y, 0x000000FF);
+		my_mlx_pixel_put(img, x, y, all->ceiling.color);
 		y++;
 	}
 	y = all->rc.draw_start;
@@ -193,7 +193,7 @@ static void	draw_column(t_all *all, t_data *img, int x)
 	}
 	while (y < SCREENH)
 	{
-		my_mlx_pixel_put(img, x, y, 0x0000FF00);
+		my_mlx_pixel_put(img, x, y, all->floor.color);
 		y++;
 	}
 }

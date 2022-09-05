@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 16:06:51 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:31:18 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_rgb
 	int		red;
 	int		green;
 	int		blue;
+	int		color;
 }	t_rgb;
 
 typedef struct s_texture
@@ -166,6 +167,7 @@ int		render_raycasting(t_all *all);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 unsigned int	get_pixel_color(t_texture *tex, int x, int y);
 void			my_mlx_square(t_data *data, int posx, int posy, int color);
+int				create_trgb(int t, int r, int g, int b);
 
 // utils_vec.c
 double	norm(t_vec v);

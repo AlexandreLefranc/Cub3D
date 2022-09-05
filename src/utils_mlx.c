@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:41:08 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 14:40:05 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:30:14 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,9 @@ void	my_mlx_square(t_data *data, int posx, int posy, int color)
 		}
 		y++;
 	}
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
 }

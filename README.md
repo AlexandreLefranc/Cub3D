@@ -1,9 +1,3 @@
----
-header-includes:
-  - \usepackage{algorithmic}
----
-
-
 # Table of content
 
 [[toc]]
