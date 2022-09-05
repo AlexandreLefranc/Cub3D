@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:13:37 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/31 12:24:17 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:09:35 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,9 @@ int	main(int argc, char **argv)
 		return (destroy_all(all), 1);
 	if (create_texture(all) != 0)
 		return (destroy_all(all), 1);
-	display_minimap(all, 20, 20);
 	print_all(all);
+	render_raycasting(all);
+	// display_minimap(all, 20, 20);
 	mlx_hook(all->win, 02, (1L<<0), key_hook, all);
 	mlx_hook(all->win, 17, 0, destroy_all_exit, all);
 	mlx_loop(all->mlx);

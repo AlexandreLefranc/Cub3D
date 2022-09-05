@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/31 12:34:54 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:06:51 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,17 @@
 
 # define SCREENW 1800
 # define SCREENH 900
-# define TILE 32
+# define TILE 16
+# define FOVRATIO 0.66
 # define ROTSPEED 0.04
 # define MOVESPEED 0.1
 
 typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void			*img;
+	unsigned int	*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
 }	t_data;
 
 typedef struct s_point
@@ -64,6 +65,10 @@ typedef struct s_texture
 {
 	char	*path;
 	void	*img;
+	unsigned int	*data;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	int		width;
 	int		height;
 }	t_texture;
@@ -74,6 +79,27 @@ typedef struct s_player
 	t_vec	dir;
 	t_vec	plane;
 }	t_player;
+
+typedef struct s_raycast
+{
+	t_vec		ray;
+	int			side_x;
+	int			side_y;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		sideDistX;
+	double		sideDistY;
+	int			side;
+	int			mapX;
+	int			mapY;
+	double		wall_dist;
+	t_texture	*texture;
+	int			wall_height;
+	double		wall_x;
+	int			texture_x;
+	int			draw_start;
+	int			draw_end;
+}	t_raycast;
 
 typedef struct s_all
 {
@@ -88,6 +114,7 @@ typedef struct s_all
 	t_texture	texture_we;
 	t_texture	texture_ea;
 	t_player	player;
+	t_raycast	rc;
 }	t_all;
 
 // check_map.c
@@ -110,7 +137,8 @@ void	init_player(t_all *all);
 void	player_plane(t_all *all);
 
 // display_minmap.c
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	draw_minimap(t_all *all, t_data *img);
+void	draw_grid(t_all *all, t_data *img);
 int		display_minimap(t_all *all, int offsetx, int offsety);
 
 // display_player.c
@@ -131,9 +159,16 @@ int		extract_map(int fd, t_all *all);
 //player_hook.c
 int		key_hook(int keycode, t_all *all);
 
+// raycasting.c
+int		render_raycasting(t_all *all);
+
 // utils_mlx.c
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	my_mlx_square(t_data *data, int posx, int posy, int color);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+unsigned int	get_pixel_color(t_texture *tex, int x, int y);
+void			my_mlx_square(t_data *data, int posx, int posy, int color);
+
+// utils_vec.c
+double	norm(t_vec v);
 
 // utils.c
 void	destroy_all(t_all *all);
