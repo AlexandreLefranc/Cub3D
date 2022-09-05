@@ -1,7 +1,7 @@
-NO ./asset/Test/A_original256.xpm
-SO ./asset/Test/B_original256.xpm
-WE ./asset/Test/C_original256.xpm
-EA ./asset/Test/D_original256.xpm
+NO ./asset/Test/EA.xpm
+SO ./asset/Test/SO.xpm
+WE ./asset/Test/Untitled.xpm
+EA ./asset/Test/WE.xpm
 
 F 220,100,250
 C 225,30,222
