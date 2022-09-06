@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:04:31 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/06 11:47:49 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:40:55 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,9 +220,9 @@ int	render_raycasting(t_all *all)
 		x++;
 	}
 
-	if (ft_strlen(all->map[0]) * TILE < SCREENW &&
-			ft_strtabsize(all->map) * TILE < SCREENH)
-		draw_minimap(all, &img);
+	// if (ft_strlen(all->map[0]) * TILE < SCREENW &&
+	// 		ft_strtabsize(all->map) * TILE < SCREENH)
+	// 	draw_minimap(all, &img);
 
 	mlx_put_image_to_window(all->mlx, all->win, img.img, 0, 0);
 
