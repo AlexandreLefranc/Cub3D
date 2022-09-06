@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:07:25 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 16:04:55 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/06 13:41:37 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ void	draw_minimap(t_all *all, t_data *img)
 		x = 0;
 		while (x < xmax)
 		{
-			if (all->map[y][x] == '1')
-				my_mlx_square(img, x * TILE, y * TILE, 0x00777777);
+			if (all->map[y][x] == '1' || all->map[y][x] == ' ')
+				my_mlx_square(img, x * TILE, y * TILE, 0x00000000);
 			else
 				my_mlx_square(img, x * TILE, y * TILE, 0x00FFFFFF);
 			x++;
 		}
 		y++;
 	}
-	draw_grid(all, img);
+	// draw_grid(all, img);
 	display_player(all, img);
 }
 
