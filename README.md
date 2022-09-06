@@ -22,6 +22,7 @@
 - Garder une petite marge entre la camera et le mur.
 - Lors du deplacement contre un mur de biais, faire glisser le perso contre le mur.
 - Creer un hook pour activer/desactiver la minimap.
+- Eviter de creer et detruire l'image a chaque cycle de raycasting.
 
 # Raycasting
 
