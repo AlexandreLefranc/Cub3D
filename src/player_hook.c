@@ -57,7 +57,7 @@ static void	move_player_position(t_all *all, double *x, double *y)
 int	key_press(int keycode, t_all *all)
 {
 	if (keycode == 109) // m
-		all->minimap_display = true;
+		all->minimap_display = !all->minimap_display;
 	if (keycode == 65361)  // fleche GAUCHE
 		all->player.left_arrow_press = true;
 	else if (keycode == 65363)  // fleche DROITE
@@ -77,8 +77,6 @@ int	key_press(int keycode, t_all *all)
 
 int	key_release(int keycode, t_all *all)
 {
-	if (keycode == 109) // m
-		all->minimap_display = false;
 	if (keycode == 65361)  // fleche GAUCHE
 		all->player.left_arrow_press = false;
 	else if (keycode == 65363)  // fleche DROITE
@@ -99,9 +97,6 @@ int	loop_hook(t_all *all)
 	double	new_pos_x;
 	double	new_pos_y;
 
-	if (all->minimap_display == true && ft_strlen(all->map[0]) * TILE < SCREENW &&
-		ft_strtabsize(all->map) * TILE < SCREENH)
-			draw_minimap(all, &all->imgbuf);
 	if (all->player.left_arrow_press == true || all->player.right_arrow_press == true)
 		move_player_direction(all);
 	else if (all->player.a_press == true || all->player.d_press == true
@@ -114,9 +109,6 @@ int	loop_hook(t_all *all)
 			all->player.pos.y = new_pos_y;
 		}
 	}
-	else
-		return (0);
-	// usleep(10000);
 	render_raycasting(all);
 	return (1);
 }

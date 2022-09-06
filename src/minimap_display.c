@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:07:25 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/06 13:41:37 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:20:46 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	draw_minimap(t_all *all, t_data *img)
 	size_t	xmax;
 	size_t	ymax;
 
+	printf("here\n");
 	y = 0;
 	xmax = ft_strlen(all->map[y]);
 	ymax = ft_strtabsize(all->map);
