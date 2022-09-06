@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:04:31 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 16:36:20 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:41:14 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ static void	draw_column(t_all *all, t_data *img, int x)
 	y = all->rc.draw_start;
 	step = 1.0 * all->rc.texture->height / all->rc.wall_height;
 	tex_pos = (y - SCREENH / 2 + all->rc.wall_height / 2) * step;
-	while (y < all->rc.draw_end)
+	while (y <= all->rc.draw_end)
 	{
 		tex_y = (int)tex_pos & (all->rc.texture->height - 1);
 		tex_pos += step;
