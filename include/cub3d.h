@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 16:31:18 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:46:26 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_all
 {
 	void		*mlx;
 	void		*win;
+	t_data		imgbuf;
 	char		*map_path;
 	char		**map;
 	t_rgb		floor;

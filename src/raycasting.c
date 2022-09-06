@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:04:31 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/06 11:47:49 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:57:21 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ static void	find_wall_height_and_texture_x(t_all *all)
 	// printf("texture_x = %d\n", all->rc.texture_x);
 }
 
-static void	draw_column(t_all *all, t_data *img, int x)
+static void	draw_column(t_all *all, int x)
 {
 	double	step;
 	double	tex_pos;
@@ -177,7 +177,7 @@ static void	draw_column(t_all *all, t_data *img, int x)
 	y = 0;
 	while (y < all->rc.draw_start)
 	{
-		my_mlx_pixel_put(img, x, y, all->ceiling.color);
+		my_mlx_pixel_put(&all->imgbuf, x, y, all->ceiling.color);
 		y++;
 	}
 	y = all->rc.draw_start;
@@ -188,12 +188,12 @@ static void	draw_column(t_all *all, t_data *img, int x)
 		tex_y = (int)tex_pos & (all->rc.texture->height - 1);
 		tex_pos += step;
 		color = get_pixel_color(all->rc.texture, all->rc.texture_x, tex_y);
-		my_mlx_pixel_put(img, x, y, color);
+		my_mlx_pixel_put(&all->imgbuf, x, y, color);
 		y++;
 	}
 	while (y < SCREENH)
 	{
-		my_mlx_pixel_put(img, x, y, all->floor.color);
+		my_mlx_pixel_put(&all->imgbuf, x, y, all->floor.color);
 		y++;
 	}
 }
@@ -201,12 +201,11 @@ static void	draw_column(t_all *all, t_data *img, int x)
 int	render_raycasting(t_all *all)
 {
 	int	x;
-	t_data	img;
 
 	gettimeofday(&t0, NULL);
-	img.img = mlx_new_image(all->mlx, SCREENW, SCREENH);
-	img.addr = (unsigned int *)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
+	// img.img = mlx_new_image(all->mlx, SCREENW, SCREENH);
+	// img.addr = (unsigned int *)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+	// 		&img.endian);
 	x = 0;
 	while (x < SCREENW)
 	{
@@ -216,17 +215,17 @@ int	render_raycasting(t_all *all)
 		find_distance(all);
 		find_texture(all);
 		find_wall_height_and_texture_x(all);
-		draw_column(all, &img, x);
+		draw_column(all, x);
 		x++;
 	}
 
 	if (ft_strlen(all->map[0]) * TILE < SCREENW &&
 			ft_strtabsize(all->map) * TILE < SCREENH)
-		draw_minimap(all, &img);
+		draw_minimap(all, &all->imgbuf);
 
-	mlx_put_image_to_window(all->mlx, all->win, img.img, 0, 0);
+	mlx_put_image_to_window(all->mlx, all->win, all->imgbuf.img, 0, 0);
 
-	mlx_destroy_image(all->mlx, img.img);
+	// mlx_destroy_image(all->mlx, img.img);
 	gettimeofday(&t1, NULL);
 	printf("Elapsed time: %ld microseconds\n", (t1.tv_sec - t0.tv_sec) * 1000000 + (t1.tv_usec - t0.tv_usec));
 	return (0);
