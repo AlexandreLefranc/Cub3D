@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/06 16:12:18 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:58:08 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,11 +143,9 @@ int		create_window(t_all *all);
 
 // init_player.c
 void	init_player(t_all *all);
-void	player_plane(t_all *all);
 
 // display_minmap.c
 void	draw_minimap(t_all *all, t_data *img);
-void	draw_grid(t_all *all, t_data *img);
 int		display_minimap(t_all *all, int offsetx, int offsety);
 
 // display_player.c
@@ -166,10 +164,15 @@ int		extract_texture_rgb(int fd, t_all *all);
 int		extract_map(int fd, t_all *all);
 
 //player_hook.c
-// int		key_hook(int keycode, t_all *all);
 int		key_press(int keycode, t_all *all);
 int		key_release(int keycode, t_all *all);
 int		loop_hook(t_all *all);
+
+// raycasting_find.c
+void	find_wall(t_all *all);
+void	find_distance(t_all *all);
+void	find_texture(t_all *all);
+void	find_wall_height_and_texture_x(t_all *all);
 
 // raycasting.c
 int		render_raycasting(t_all *all);
@@ -182,6 +185,7 @@ int				create_trgb(int t, int r, int g, int b);
 
 // utils_vec.c
 double	norm(t_vec v);
+void	player_plane(t_all *all);
 
 // utils.c
 void	destroy_all(t_all *all);
