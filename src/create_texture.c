@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 18:23:19 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 14:34:00 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:59:57 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	create_texture(t_all *all)
 	all->texture_no.data = (unsigned int *)mlx_get_data_addr(all->texture_no.img,
 		&all->texture_no.bits_per_pixel, &all->texture_no.line_length,
 		&all->texture_no.endian);
-
 	all->texture_so.img = mlx_xpm_file_to_image(all->mlx, all->texture_so.path,
 			&all->texture_so.width, &all->texture_so.height);
 	if (all->texture_so.img == NULL)
@@ -29,7 +28,6 @@ int	create_texture(t_all *all)
 	all->texture_so.data = (unsigned int *)mlx_get_data_addr(all->texture_so.img,
 		&all->texture_so.bits_per_pixel, &all->texture_so.line_length,
 		&all->texture_so.endian);
-
 	all->texture_we.img = mlx_xpm_file_to_image(all->mlx, all->texture_we.path,
 			&all->texture_we.width, &all->texture_we.height);
 	if (all->texture_we.img == NULL)
@@ -37,7 +35,6 @@ int	create_texture(t_all *all)
 	all->texture_we.data = (unsigned int *)mlx_get_data_addr(all->texture_we.img,
 		&all->texture_we.bits_per_pixel, &all->texture_we.line_length,
 		&all->texture_we.endian);
-
 	all->texture_ea.img = mlx_xpm_file_to_image(all->mlx, all->texture_ea.path,
 			&all->texture_ea.width, &all->texture_ea.height);
 	if (all->texture_ea.img == NULL)
