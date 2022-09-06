@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/06 15:46:26 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:12:18 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define SCREENH 900
 # define TILE 16
 # define FOVRATIO 0.66
-# define ROTSPEED 0.04
-# define MOVESPEED 0.1
+# define ROTSPEED 0.02
+# define MOVESPEED 0.03
 
 typedef struct s_data {
 	void			*img;
@@ -79,6 +79,12 @@ typedef struct s_player
 	t_vec	pos;
 	t_vec	dir;
 	t_vec	plane;
+	bool	s_press;
+	bool	a_press;
+	bool	d_press;
+	bool	w_press;
+	bool	left_arrow_press;
+	bool	right_arrow_press;
 }	t_player;
 
 typedef struct s_raycast
@@ -116,6 +122,7 @@ typedef struct s_all
 	t_texture	texture_we;
 	t_texture	texture_ea;
 	t_player	player;
+	bool		minimap_display;
 	t_raycast	rc;
 }	t_all;
 
@@ -159,7 +166,10 @@ int		extract_texture_rgb(int fd, t_all *all);
 int		extract_map(int fd, t_all *all);
 
 //player_hook.c
-int		key_hook(int keycode, t_all *all);
+// int		key_hook(int keycode, t_all *all);
+int		key_press(int keycode, t_all *all);
+int		key_release(int keycode, t_all *all);
+int		loop_hook(t_all *all);
 
 // raycasting.c
 int		render_raycasting(t_all *all);

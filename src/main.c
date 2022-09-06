@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:13:37 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/06 16:01:54 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:12:02 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,10 @@ int	main(int argc, char **argv)
 	all->imgbuf.addr = (unsigned int *)mlx_get_data_addr(all->imgbuf.img,
 			&all->imgbuf.bits_per_pixel, &all->imgbuf.line_length,
 			&all->imgbuf.endian);
-	mlx_hook(all->win, 02, (1L<<0), key_hook, all);
+	mlx_hook(all->win, 02, (1L<<0), key_press, all);
+	mlx_hook(all->win, 03, (1L<<1), key_release, all);
 	mlx_hook(all->win, 17, 0, destroy_all_exit, all);
+	mlx_loop_hook(all->mlx, loop_hook, all);
 	mlx_loop(all->mlx);
 	destroy_all(all);
 	return (0);
