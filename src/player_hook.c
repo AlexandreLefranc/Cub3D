@@ -101,7 +101,7 @@ int	loop_hook(t_all *all)
 
 	if (all->minimap_display == true && ft_strlen(all->map[0]) * TILE < SCREENW &&
 		ft_strtabsize(all->map) * TILE < SCREENH)
-			draw_minimap(all, &all->img);
+			draw_minimap(all, &all->imgbuf);
 	if (all->player.left_arrow_press == true || all->player.right_arrow_press == true)
 		move_player_direction(all);
 	else if (all->player.a_press == true || all->player.d_press == true

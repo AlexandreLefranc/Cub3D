@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:48:18 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/31 12:24:35 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:51:15 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	destroy_all(t_all *all)
 		mlx_destroy_image(all->mlx, all->texture_we.img);
 	if (all->texture_ea.img != NULL)
 		mlx_destroy_image(all->mlx, all->texture_ea.img);
+	if (all->imgbuf.img != NULL)
+		mlx_destroy_image(all->mlx, all->imgbuf.img);
 	if (all->mlx != NULL && all->win != NULL)
 	{
 		mlx_destroy_window(all->mlx, all->win);
