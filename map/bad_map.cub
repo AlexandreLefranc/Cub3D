@@ -1,16 +1,11 @@
-NO ./asset/wolftex/pics/greystone.xpm
-SO ./asset/wolftex/pics/eagle.xpm
-WE ./asset/wolftex/pics/purplestone.xpm
-EA ./asset/wolftex/pics/redbrick.xpm
+NO ./asset/Test/EA.xpm
+SO ./asset/Test/SO.xpm
+WE ./asset/Test/Untitled.xpm
+EA ./asset/Test/WE.xpm
 
+F 255,255,255
+C 0,0,0
 
-
-
-
-
-C 225,30,0
-F 220,100,0
-
-1111111111111111111111
-100W000000000000011
-1111111
+111
+1N1
+111

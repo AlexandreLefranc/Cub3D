@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:45:09 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/07 16:35:37 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:52:11 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	parser(int argc, char **argv, t_all *all)
 		return (printf("Error\nInvalid number of argument\n"), 1);
 	all->map_path = argv[1];
 	if (is_cub_file(all->map_path) == false)
-		return (printf("Invalid file name\n"), 1);
+		return (printf("Error\nInvalid file name\n"), 1);
 	fd = open(all->map_path, O_RDONLY);
 	if (fd < 0)
 		return (printf("Error\nCould not open %s.\n", all->map_path), 1);
