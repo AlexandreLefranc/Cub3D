@@ -44,7 +44,6 @@ SRC_FILES	=	main.c \
 				create_texture.c \
 				create_window.c \
 				minimap_display.c \
-				minimap_player.c \
 				init.c \
 				init_player.c \
 				parser.c \

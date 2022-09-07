@@ -17,23 +17,23 @@ void	find_wall(t_all *all)
 	int	hit;
 
 	hit = 0;
-	all->rc.mapX = (int)all->player.pos.x;
-	all->rc.mapY = (int)all->player.pos.y;
+	all->rc.mapx = (int)all->player.pos.x;
+	all->rc.mapy = (int)all->player.pos.y;
 	while (hit == 0)
 	{
-		if (all->rc.sideDistX < all->rc.sideDistY)
+		if (all->rc.sd_dist_x < all->rc.sd_dist_y)
 		{
-			all->rc.sideDistX += all->rc.deltaDistX;
-			all->rc.mapX += all->rc.side_x;
+			all->rc.sd_dist_x += all->rc.ddist_x;
+			all->rc.mapx += all->rc.side_x;
 			all->rc.side = 0;
 		}
 		else
 		{
-			all->rc.sideDistY += all->rc.deltaDistY;
-			all->rc.mapY += all->rc.side_y;
+			all->rc.sd_dist_y += all->rc.ddist_y;
+			all->rc.mapy += all->rc.side_y;
 			all->rc.side = 1;
 		}
-		if (all->map[all->rc.mapY][all->rc.mapX] == '1')
+		if (all->map[all->rc.mapy][all->rc.mapx] == '1')
 			hit = 1;
 	}
 }
@@ -41,9 +41,9 @@ void	find_wall(t_all *all)
 void	find_distance(t_all *all)
 {
 	if (all->rc.side == 0)
-		all->rc.wall_dist = all->rc.sideDistX - all->rc.deltaDistX;
+		all->rc.wall_dist = all->rc.sd_dist_x - all->rc.ddist_x;
 	else
-		all->rc.wall_dist = all->rc.sideDistY - all->rc.deltaDistY;
+		all->rc.wall_dist = all->rc.sd_dist_y - all->rc.ddist_y;
 }
 
 void	find_texture(t_all *all)

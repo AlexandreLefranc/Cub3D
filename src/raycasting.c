@@ -44,16 +44,16 @@ static void	get_usefull_distances(t_all *all)
 	pos_y = all->player.pos.y;
 	ray_x = all->rc.ray.x;
 	ray_y = all->rc.ray.y;
-	all->rc.deltaDistX = 1 / fabs(ray_x);
-	all->rc.deltaDistY = 1 / fabs(ray_y);
+	all->rc.ddist_x = 1 / fabs(ray_x);
+	all->rc.ddist_y = 1 / fabs(ray_y);
 	if (all->rc.side_x < 0)
-		all->rc.sideDistX = all->rc.deltaDistX * (pos_x - floor(pos_x));
+		all->rc.sd_dist_x = all->rc.ddist_x * (pos_x - floor(pos_x));
 	else
-		all->rc.sideDistX = all->rc.deltaDistX * (floor(pos_x) + 1 - pos_x);
+		all->rc.sd_dist_x = all->rc.ddist_x * (floor(pos_x) + 1 - pos_x);
 	if (all->rc.side_y < 0)
-		all->rc.sideDistY = all->rc.deltaDistY * (pos_y - floor(pos_y));
+		all->rc.sd_dist_y = all->rc.ddist_y * (pos_y - floor(pos_y));
 	else
-		all->rc.sideDistY = all->rc.deltaDistY * (floor(pos_y) + 1 - pos_y);
+		all->rc.sd_dist_y = all->rc.ddist_y * (floor(pos_y) + 1 - pos_y);
 }
 
 static void	draw_ceiling(t_all *all, int x)

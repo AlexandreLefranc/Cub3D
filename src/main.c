@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:13:37 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/06 16:52:46 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/07 11:43:26 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	init_player(all);
 	if (create_window(all) != 0)
 		return (destroy_all(all), 1);
-	if (create_texture(all) != 0)
+	if (create_texture_ea_we(all) != 0 || create_texture_no_so(all) != 0)
 		return (destroy_all(all), 1);
 	all->imgbuf.img = mlx_new_image(all->mlx, SCREENW, SCREENH);
 	all->imgbuf.addr = (unsigned int *)mlx_get_data_addr(all->imgbuf.img,
