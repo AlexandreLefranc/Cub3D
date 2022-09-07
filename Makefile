@@ -8,7 +8,7 @@
 #             COMPILATION            #
 #------------------------------------#
 
-NAME	=	cub3d
+NAME	=	cub3D
 
 CC		=	clang
 CFLAGS	=	-Wall -Wextra -Werror -g3 # -Wno-error=unused-function
