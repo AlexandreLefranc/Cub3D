@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:44:14 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/06 16:44:14 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/07 13:41:53 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	find_distance(t_all *all)
 		all->rc.wall_dist = all->rc.sd_dist_x - all->rc.ddist_x;
 	else
 		all->rc.wall_dist = all->rc.sd_dist_y - all->rc.ddist_y;
+	if (all->rc.wall_dist < 0.0001)
+		all->rc.wall_dist = 0.0001;
 }
 
 void	find_texture(t_all *all)
