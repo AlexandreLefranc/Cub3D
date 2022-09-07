@@ -6,7 +6,7 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:54:29 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/09/07 11:35:30 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:33:40 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	char_is_valid(char c, int line, int column, int *player)
 {
 	if (*player == 1 && (c == 'N' || c == 'S' || c == 'E' || c == 'W'))
 	{
-		printf("You already have a player in your game\n");
+		printf("Error\nYou already have a player in your game\n");
 		return (0);
 	}
 	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
@@ -28,7 +28,7 @@ static int	char_is_valid(char c, int line, int column, int *player)
 	}
 	else
 	{
-		printf("Char %c is invalid at [%d][%d]\n", c, line, column);
+		printf("Error\nChar %c is invalid at [%d][%d]\n", c, line, column);
 		return (0);
 	}
 }
@@ -45,7 +45,7 @@ static int	spaces_are_valid(int line, int column, char **map)
 			return (1);
 		else
 		{
-			printf("Spaces are invalid at : map[%d][%d]\n", line, column);
+			printf("Error\nSpaces are invalid at: map[%d][%d]\n", line, column);
 			return (0);
 		}
 	}
@@ -107,12 +107,12 @@ bool	map_is_valid(char **map, int player)
 
 	line = 0;
 	if (line_borders_check(map) == 0)
-		return (printf("Border issue !\n"), false);
+		return (printf("Error\nBorder issue !\n"), false);
 	while (map[line] && line < (int)ft_strtabsize(map))
 	{
 		column = 0;
 		if (column_borders_check(map[line]) == 0)
-			return (printf("Border issue !\n"), false);
+			return (printf("Error\nBorder issue !\n"), false);
 		while (map[line][column] && column < (int)ft_strlen(map[line]))
 		{
 			if (char_is_valid(map[line][column], line, column, &player) == 1
@@ -124,6 +124,6 @@ bool	map_is_valid(char **map, int player)
 		line++;
 	}
 	if (player == 0)
-		return (printf("Please add a player to your game\n"), false);
+		return (printf("Error\nPlease add a player to your game\n"), false);
 	return (true);
 }

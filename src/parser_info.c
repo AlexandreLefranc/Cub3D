@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:50:30 by alefranc          #+#    #+#             */
-/*   Updated: 2022/08/29 18:01:43 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:34:56 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	is_valid_identifier(char **strtab, t_all *all)
 {
 	if (ft_strtabsize(strtab) != 2)
-		return (printf("Error: Invalid identifier:%s\n", strtab[0]), false);
+		return (printf("Error\nInvalid identifier:%s\n", strtab[0]), false);
 	if (ft_strcmp(strtab[0], "NO") == 0 && all->texture_no.path == NULL)
 		return (true);
 	if (ft_strcmp(strtab[0], "SO") == 0 && all->texture_so.path == NULL)
@@ -28,7 +28,7 @@ static bool	is_valid_identifier(char **strtab, t_all *all)
 		return (true);
 	if (ft_strcmp(strtab[0], "C") == 0 && all->ceiling.raw == NULL)
 		return (true);
-	printf("Error: Invalid identifier:%s\n", strtab[0]);
+	printf("Error\nInvalid identifier:%s\n", strtab[0]);
 	return (false);
 }
 
@@ -38,7 +38,7 @@ static int	extract_info(char **strtab, t_all *all)
 
 	dup = ft_strdup(strtab[1]);
 	if (dup == NULL)
-		return (printf("Error: malloc() failed\n"), 1);
+		return (printf("Error\nmalloc() failed\n"), 1);
 	if (ft_strcmp(strtab[0], "NO") == 0)
 		all->texture_no.path = dup;
 	if (ft_strcmp(strtab[0], "SO") == 0)
@@ -61,7 +61,7 @@ static int	process_line(char *line, t_all *all)
 	*ft_strrchr(line, '\n') = '\0';
 	strtab = ft_split(line, ' ');
 	if (strtab == NULL)
-		return (printf("Error: malloc() failed\n"), 1);
+		return (printf("Error\nmalloc() failed\n"), 1);
 	if (ft_strtabsize(strtab) > 0)
 	{
 		if (is_valid_identifier(strtab, all) == true)
@@ -108,6 +108,6 @@ int	extract_texture_rgb(int fd, t_all *all)
 		line = get_next_line(fd);
 	}
 	if (line == NULL)
-		return (printf("Error: Missing some information in file.\n"), 1);
+		return (printf("Error\nMissing some information in file.\n"), 1);
 	return (0);
 }

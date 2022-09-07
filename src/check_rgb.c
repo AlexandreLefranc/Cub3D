@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 14:22:40 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/05 16:35:52 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:34:14 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static bool	only_valid_char(const char *str)
 static int	check_rgb_format(const char *raw)
 {
 	if (ft_strchr(raw, ' ') != NULL)
-		return (printf("Error: Found a space in RGB\n"), 1);
+		return (printf("Error\nFound a space in RGB\n"), 1);
 	if (count_char_occurence(raw, ',') != 2)
-		return (printf("Error: Found incorrect number of ',' in RGB\n"), 1);
+		return (printf("Error\nFound incorrect number of ',' in RGB\n"), 1);
 	if (only_valid_char(raw) == false)
-		return (printf("Error: Found invalid char in RGB\n"), 1);
+		return (printf("Error\nFound invalid char in RGB\n"), 1);
 	return (0);
 }
 
@@ -62,22 +62,22 @@ static int	check_rgb(t_rgb *rgb)
 		return (1);
 	split = ft_split(rgb->raw, ',');
 	if (split == NULL)
-		return (printf("Error: malloc() failed\n"), 1);
+		return (printf("Error\nmalloc() failed\n"), 1);
 	color = ft_atoi(split[0]);
 	if (color >= 0 && color <= 255)
 		rgb->red = color;
 	else
-		return (ft_strtabfree(split), printf("Error: Invalid color\n"), 1);
+		return (ft_strtabfree(split), printf("Error\nInvalid color\n"), 1);
 	color = ft_atoi(split[1]);
 	if (color >= 0 && color <= 255)
 		rgb->green = color;
 	else
-		return (ft_strtabfree(split), printf("Error: Invalid color\n"), 1);
+		return (ft_strtabfree(split), printf("Error\nInvalid color\n"), 1);
 	color = ft_atoi(split[2]);
 	if (color >= 0 && color <= 255)
 		rgb->blue = color;
 	else
-		return (ft_strtabfree(split), printf("Error: Invalid color\n"), 1);
+		return (ft_strtabfree(split), printf("Error\nInvalid color\n"), 1);
 	ft_strtabfree(split);
 	return (0);
 }
