@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/06 16:58:08 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/07 11:50:49 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ typedef struct s_rgb
 
 typedef struct s_texture
 {
-	char	*path;
-	void	*img;
+	char			*path;
+	void			*img;
 	unsigned int	*data;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				width;
+	int				height;
 }	t_texture;
 
 typedef struct s_player
@@ -92,13 +92,13 @@ typedef struct s_raycast
 	t_vec		ray;
 	int			side_x;
 	int			side_y;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		sideDistX;
-	double		sideDistY;
+	double		ddist_x;
+	double		ddist_y;
+	double		sd_dist_x;
+	double		sd_dist_y;
 	int			side;
-	int			mapX;
-	int			mapY;
+	int			mapx;
+	int			mapy;
 	double		wall_dist;
 	t_texture	*texture;
 	int			wall_height;
@@ -127,55 +127,52 @@ typedef struct s_all
 }	t_all;
 
 // check_map.c
-bool	map_is_valid(char **map);
+bool			map_is_valid(char **map, int player);
 
 // check_rgb.c
-int		check_all_rgb(t_all *all);
+int				check_all_rgb(t_all *all);
 
 // checker.c
-int		checker(t_all *all);
+int				checker(t_all *all);
 
 // create_texture.c
-int		create_texture(t_all *all);
+int				create_texture_no_so(t_all *all);
+int				create_texture_ea_we(t_all *all);
 
 // create_window.c
-int		create_window(t_all *all);
+int				create_window(t_all *all);
 
 // init_player.c
-void	init_player(t_all *all);
+void			init_player(t_all *all);
 
 // display_minmap.c
-void	draw_minimap(t_all *all, t_data *img);
-int		display_minimap(t_all *all, int offsetx, int offsety);
-
-// display_player.c
-void	display_player(t_all *all, t_data *img);
+void			draw_minimap(t_all *all, t_data *img);
 
 // init.c
-t_all	*init_all(void);
+t_all			*init_all(void);
 
 // parser.c
-int		parser(int argc, char **argv, t_all *all);
+int				parser(int argc, char **argv, t_all *all);
 
 // parser_info.c
-int		extract_texture_rgb(int fd, t_all *all);
+int				extract_texture_rgb(int fd, t_all *all);
 
 // parser_map.c
-int		extract_map(int fd, t_all *all);
+int				extract_map(int fd, t_all *all);
 
 //player_hook.c
-int		key_press(int keycode, t_all *all);
-int		key_release(int keycode, t_all *all);
-int		loop_hook(t_all *all);
+int				key_press(int keycode, t_all *all);
+int				key_release(int keycode, t_all *all);
+int				loop_hook(t_all *all);
 
 // raycasting_find.c
-void	find_wall(t_all *all);
-void	find_distance(t_all *all);
-void	find_texture(t_all *all);
-void	find_wall_height_and_texture_x(t_all *all);
+void			find_wall(t_all *all);
+void			find_distance(t_all *all);
+void			find_texture(t_all *all);
+void			find_wall_height_and_texture_x(t_all *all);
 
 // raycasting.c
-int		render_raycasting(t_all *all);
+int				render_raycasting(t_all *all);
 
 // utils_mlx.c
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -184,12 +181,12 @@ void			my_mlx_square(t_data *data, int posx, int posy, int color);
 int				create_trgb(int t, int r, int g, int b);
 
 // utils_vec.c
-double	norm(t_vec v);
-void	player_plane(t_all *all);
+double			norm(t_vec v);
+void			player_plane(t_all *all);
 
 // utils.c
-void	destroy_all(t_all *all);
-int		destroy_all_exit(t_all *all);
-void	drain_fd(int fd);
+void			destroy_all(t_all *all);
+int				destroy_all_exit(t_all *all);
+void			drain_fd(int fd);
 
 #endif

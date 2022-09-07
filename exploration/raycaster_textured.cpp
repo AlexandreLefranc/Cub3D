@@ -132,16 +132,16 @@ int main(int /*argc*/, char */*argv*/[])
 			double rayDirY = dirY + planeY*cameraX;
 
 			//which box of the map we're in
-			int mapX = int(posX);
-			int mapY = int(posY);
+			int mapx = int(posX);
+			int mapy = int(posY);
 
 			//length of ray from current position to next x or y-side
-			double sideDistX;
-			double sideDistY;
+			double sd_dist_x;
+			double sd_dist_y;
 
 			//length of ray from one x or y-side to next x or y-side
-			double deltaDistX = (rayDirX == 0) ? 1e30 : std::abs(1 / rayDirX);
-			double deltaDistY = (rayDirY == 0) ? 1e30 : std::abs(1 / rayDirY);
+			double ddist_x = (rayDirX == 0) ? 1e30 : std::abs(1 / rayDirX);
+			double ddist_y = (rayDirY == 0) ? 1e30 : std::abs(1 / rayDirY);
 			double perpWallDist;
 
 			//what direction to step in x or y-direction (either +1 or -1)
@@ -155,46 +155,46 @@ int main(int /*argc*/, char */*argv*/[])
 			if(rayDirX < 0)
 			{
 				stepX = -1;
-				sideDistX = (posX - mapX) * deltaDistX;
+				sd_dist_x = (posX - mapx) * ddist_x;
 			}
 			else
 			{
 				stepX = 1;
-				sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+				sd_dist_x = (mapx + 1.0 - posX) * ddist_x;
 			}
 			if(rayDirY < 0)
 			{
 				stepY = -1;
-				sideDistY = (posY - mapY) * deltaDistY;
+				sd_dist_y = (posY - mapy) * ddist_y;
 			}
 			else
 			{
 				stepY = 1;
-				sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+				sd_dist_y = (mapy + 1.0 - posY) * ddist_y;
 			}
 			//perform DDA
 			while (hit == 0)
 			{
 				//jump to next map square, either in x-direction, or in y-direction
-				if(sideDistX < sideDistY)
+				if(sd_dist_x < sd_dist_y)
 				{
-					sideDistX += deltaDistX;
-					mapX += stepX;
+					sd_dist_x += ddist_x;
+					mapx += stepX;
 					side = 0;
 				}
 				else
 				{
-					sideDistY += deltaDistY;
-					mapY += stepY;
+					sd_dist_y += ddist_y;
+					mapy += stepY;
 					side = 1;
 				}
 				//Check if ray has hit a wall
-				if(worldMap[mapX][mapY] > 0) hit = 1;
+				if(worldMap[mapx][mapy] > 0) hit = 1;
 			}
 
 			//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
-			if(side == 0) perpWallDist = (sideDistX - deltaDistX);
-			else					perpWallDist = (sideDistY - deltaDistY);
+			if(side == 0) perpWallDist = (sd_dist_x - ddist_x);
+			else					perpWallDist = (sd_dist_y - ddist_y);
 
 			//Calculate height of line to draw on screen
 			int lineHeight = (int)(h / perpWallDist);
@@ -209,7 +209,7 @@ int main(int /*argc*/, char */*argv*/[])
 			if(drawEnd >= h) drawEnd = h - 1;
 
 			//texturing calculations
-			int texNum = worldMap[mapX][mapY] - 1; //1 subtracted from it so that texture 0 can be used!
+			int texNum = worldMap[mapx][mapy] - 1; //1 subtracted from it so that texture 0 can be used!
 
 			//calculate value of wallX
 			double wallX; //where exactly the wall was hit

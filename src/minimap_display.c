@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:07:25 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/06 16:49:44 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/07 12:00:19 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	draw_line(t_data *img, t_point start, t_point end, int i)
 	i = 1;
 	while (i <= step)
 	{
-		my_mlx_pixel_put(img, (int)x, (int)y, 0x000000FF);
+		my_mlx_pixel_put(img, (int)x, (int)y, 0x00008eff);
 		x = x + dx;
 		y = y + dy;
 		i = i + 1;
@@ -68,21 +68,7 @@ void	display_player(t_all *all, t_data *img)
 	end.x = (int)((all->player.pos.x + all->player.dir.x) * TILE);
 	end.y = (int)((all->player.pos.y + all->player.dir.y) * TILE);
 	draw_line(img, start, end, 0);
-	start.x = (int)(all->player.pos.x * TILE);
-	start.y = (int)(all->player.pos.y * TILE);
-	end.x = (int)((all->player.pos.x
-				+ (all->player.dir.x + all->player.plane.x) / 2) * TILE);
-	end.y = (int)((all->player.pos.y
-				+ (all->player.dir.y + all->player.plane.y) / 2) * TILE);
-	draw_line(img, start, end, 0);
-	start.x = (int)(all->player.pos.x * TILE);
-	start.y = (int)(all->player.pos.y * TILE);
-	end.x = (int)((all->player.pos.x
-				+ (all->player.dir.x - all->player.plane.x) / 2) * TILE);
-	end.y = (int)((all->player.pos.y
-				+ (all->player.dir.y - all->player.plane.y) / 2) * TILE);
-	draw_line(img, start, end, 0);
-	draw_player_box(img, start, 0x00FF4500);
+	draw_player_box(img, start, 0x00008eff);
 }
 
 void	draw_minimap(t_all *all, t_data *img)
@@ -92,7 +78,6 @@ void	draw_minimap(t_all *all, t_data *img)
 	size_t	xmax;
 	size_t	ymax;
 
-	printf("here\n");
 	y = 0;
 	xmax = ft_strlen(all->map[y]);
 	ymax = ft_strtabsize(all->map);

@@ -6,7 +6,7 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:54:29 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/09/06 16:56:45 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/09/07 11:35:30 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,11 @@ static int	line_borders_check(char **map)
 	return (1);
 }
 
-bool	map_is_valid(char **map)
+bool	map_is_valid(char **map, int player)
 {
 	int	line;
 	int	column;
-	int	player;
 
-	player = 0;
 	line = 0;
 	if (line_borders_check(map) == 0)
 		return (printf("Border issue !\n"), false);
