@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:47:12 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/07 16:35:25 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/09/08 11:43:30 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ static int	map_append_line2(t_all *all, char *line)
 
 static int	map_append_line(t_all *all, char *line)
 {
-	*ft_strrchr(line, '\n') = '\0';
+	if (ft_strrchr(line, '\n') != NULL)
+		*ft_strrchr(line, '\n') = '\0';
 	if (all->map == NULL)
 	{
 		all->map = ft_calloc(sizeof(*(all->map)), 2);
