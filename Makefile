@@ -50,6 +50,7 @@ SRC_FILES	=	main.c \
 				parser_info.c \
 				parser_map.c \
 				player_hook.c \
+				player_move.c \
 				raycasting_find.c \
 				raycasting.c \
 				utils_mlx.c \

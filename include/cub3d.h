@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/07 11:50:49 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/09/08 20:02:01 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,9 @@ int				key_press(int keycode, t_all *all);
 int				key_release(int keycode, t_all *all);
 int				loop_hook(t_all *all);
 
+// player_move.c
+void			move_player_position(t_all *all);
+
 // raycasting_find.c
 void			find_wall(t_all *all);
 void			find_distance(t_all *all);
@@ -183,6 +186,7 @@ int				create_trgb(int t, int r, int g, int b);
 // utils_vec.c
 double			norm(t_vec v);
 void			player_plane(t_all *all);
+double			angle_between_vector(t_vec u, t_vec v);
 
 // utils.c
 void			destroy_all(t_all *all);

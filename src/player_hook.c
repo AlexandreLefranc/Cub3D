@@ -6,7 +6,7 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:31:51 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/09/06 16:35:51 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:35:25 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,43 +25,19 @@ static void	move_player_direction(t_all *all)
 	{
 		new_dirx = (old_dir_x * cos(-ROTSPEED)) + (-sin(-ROTSPEED) * old_dir_y);
 		new_diry = (sin(-ROTSPEED) * old_dir_x) + (cos(-ROTSPEED) * old_dir_y);
+		all->player.dir.x = new_dirx;
+		all->player.dir.y = new_diry;
 	}
-	else if (all->player.right_arrow_press == true)
+	old_dir_x = all->player.dir.x;
+	old_dir_y = all->player.dir.y;
+	if (all->player.right_arrow_press == true)
 	{
 		new_dirx = (old_dir_x * cos(ROTSPEED)) + (-sin(ROTSPEED) * old_dir_y);
 		new_diry = (sin(ROTSPEED) * old_dir_x) + (cos(ROTSPEED) * old_dir_y);
+		all->player.dir.x = new_dirx;
+		all->player.dir.y = new_diry;
 	}
-	else
-		return ;
-	all->player.dir.x = new_dirx;
-	all->player.dir.y = new_diry;
 	player_plane(all);
-}
-
-static void	move_player_position(t_all *all, double *x, double *y)
-{
-	if (all->player.a_press == true)
-	{
-		*x = all->player.pos.x + all->player.dir.y * MOVESPEED;
-		*y = all->player.pos.y - all->player.dir.x * MOVESPEED;
-	}
-	else if (all->player.d_press == true)
-	{
-		*x = all->player.pos.x - all->player.dir.y * MOVESPEED;
-		*y = all->player.pos.y + all->player.dir.x * MOVESPEED;
-	}
-	else if (all->player.w_press == true)
-	{
-		*x = all->player.pos.x + all->player.dir.x * MOVESPEED;
-		*y = all->player.pos.y + all->player.dir.y * MOVESPEED;
-	}
-	else if (all->player.s_press == true)
-	{
-		*x = all->player.pos.x - all->player.dir.x * MOVESPEED;
-		*y = all->player.pos.y - all->player.dir.y * MOVESPEED;
-	}
-	else
-		return ;
 }
 
 int	key_press(int keycode, t_all *all)
@@ -104,22 +80,8 @@ int	key_release(int keycode, t_all *all)
 
 int	loop_hook(t_all *all)
 {
-	double	new_pos_x;
-	double	new_pos_y;
-
-	if (all->player.left_arrow_press == true
-		|| all->player.right_arrow_press == true)
-		move_player_direction(all);
-	else if (all->player.a_press == true || all->player.d_press == true
-		|| all->player.w_press == true || all->player.s_press == true)
-	{
-		move_player_position(all, &new_pos_x, &new_pos_y);
-		if (all->map[(int)new_pos_y][(int)new_pos_x] == '0')
-		{
-			all->player.pos.x = new_pos_x;
-			all->player.pos.y = new_pos_y;
-		}
-	}
+	move_player_direction(all);
+	move_player_position(all);
 	render_raycasting(all);
 	return (1);
 }
