@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:44:14 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/12 07:56:00 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:50:43 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,10 @@ void	find_wall(t_all *all)
 
 void	find_distance(t_all *all)
 {
-	double	angle;
-
 	if (all->rc.side == 0)
 		all->rc.wall_dist = all->rc.sd_dist_x - all->rc.ddist_x;
 	else
 		all->rc.wall_dist = all->rc.sd_dist_y - all->rc.ddist_y;
-	angle = angle_between_vector(all->player.dir, all->rc.ray);
-	all->rc.wall_dist = all->rc.wall_dist * cos(angle);
 	if (all->rc.wall_dist < 0.05)
 		all->rc.wall_dist = 0.05;
 }
