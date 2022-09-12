@@ -2,4 +2,4 @@ a.out
 cub3D
 *.o
 *.a
-mlx-test
+minilibx/test/mlx-test
