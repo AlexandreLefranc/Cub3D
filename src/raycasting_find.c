@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:44:14 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/09 12:09:26 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/12 07:56:00 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	find_wall(t_all *all)
 void	find_distance(t_all *all)
 {
 	double	angle;
-	// double	new_dist;
 
 	if (all->rc.side == 0)
 		all->rc.wall_dist = all->rc.sd_dist_x - all->rc.ddist_x;
