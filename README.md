@@ -98,33 +98,32 @@ Pour une colonne de pixel $x \in [0, \text{ScreenWidth}[$
 Definissons la fonction $ray\_deviance(x) \in [-1, 1[$
 
 $$
-ray\_deviance(x) = \frac{2 \times x}{\text{ScreenWidth}} - 1
+rayDeviance(x) = \frac{2 \times x}{\text{ScreenWidth}} - 1
 $$
 
 On peut calculer le vecteur $\overrightarrow{ray}$
 
 $$
-\overrightarrow{ray} = \overrightarrow{dir} + ray\_deviance(x) \times \overrightarrow{plane}
+\overrightarrow{ray} = \overrightarrow{dir} + rayDeviance(x) \times \overrightarrow{plane}
 $$
 
 Le vecteur $\overrightarrow{ray}$ n etant pas unitaire, on le divise par sa norme
 
 $$
-\overrightarrow{ray} = \frac{\overrightarrow{dir} + ray\_deviance(x) \times \overrightarrow{plane}}{||\overrightarrow{dir} + ray\_deviance(x) \times \overrightarrow{plane}||}
+\overrightarrow{ray} = \frac{\overrightarrow{dir} + rayDeviance(x) \times \overrightarrow{plane}}{||\overrightarrow{dir} + rayDeviance(x) \times \overrightarrow{plane}||}
 $$
 
 A ce moment, on definit egalement le sens de changement sur les axes $x$ et $y$, represente par $side_x$ et $side_y$ respectivement:
 
 $$
-side_x = sign(ray_x) \\
+side_x = sign(ray_x)
+$$
+
+$$
 side_y = sign(ray_y)
 $$
 
 Ainsi, $side_x$ et $side_y$ auront pour valeur $-1$ ou $1$.
-
-(Pour une resolution 1800x900, ca met environ 70 microsecondes, 11 microsecondes sur Dell )
-
-
 
 ### Determiner la distance, les coordonnees d intersection et le cote intersecte
 
@@ -141,63 +140,76 @@ Un autre point pour pour la position du joueur apres deplacement par le vecteur 
 On peut donc creer un triangle rectangle tel que $PV$ soit l'hypothenuse. Appelons $PRV$ le triangle rectangle en R.
 
 $$
-PV = ||\overrightarrow{ray}|| = 1 \\
-PR = |ray_x| \\
+PV = ||\overrightarrow{ray}|| = 1
+$$
+
+$$
+PR = |ray_x|
+$$
+
+$$
 RV = |ray_y|
 $$
 
 Maintenant que la conversion entre le monde des vecteurs et le monde de la geometrie est faite. Qu'est ce qu'on cherche ??
 
-- La distance parcourue par le rayon en partant d'un mur vertical pour atteindre le mur vertical suivant ($ddist_x$ sur lodev)
-- La distance parcourue par le rayon en partant d'un mur horizontal pour atteindre le mur horizontal suivant ($ddist_y$ sur lodev)
-- La distance parcourue par le rayon en partant de $P$ pour intersecter le premier mur vertical ($sd_dist_x$ sur lodev)
-- La distance parcourue par le rayon en partant de $P$ pour intersecter le premier mur horizontal ($sd_dist_y$ sur lodev)
+- La distance parcourue par le rayon en partant d'un mur vertical pour atteindre le mur vertical suivant ( $deltaDistX$ sur lodev)
+- La distance parcourue par le rayon en partant d'un mur horizontal pour atteindre le mur horizontal suivant ( $deltaDistY$ sur lodev)
+- La distance parcourue par le rayon en partant de $P$ pour intersecter le premier mur vertical ( $sideDistX$ sur lodev)
+- La distance parcourue par le rayon en partant de $P$ pour intersecter le premier mur horizontal ( $sideDistY$ sur lodev)
 
-**Pour le premier point: ddist_x**
+**Pour le premier point: deltaDistX**
 
-![](./img/ddist_x.png)
+![](./img/deltaDistX.png)
 
 On peut former un triangle rectangle ABC, rectangle en B, entre les deux murs. On connait ceci:
 
 $$
-AB = 1\\
-AC = ddist_x
+AB = 1
+$$
+
+$$
+AC = deltaDistX
 $$
 
 On remarque egalement que les triangles PRV et ABC sont semblables. On peut donc y appliquer le theoreme de Thales.
 
 $$
-\frac{AC}{PV} = \frac{AB}{PR}\\
-\frac{ddist_x}{1} = \frac{1}{|ray_x|}\\
-ddist_x = \frac{1}{|ray_x|}
+\frac{AC}{PV} = \frac{AB}{PR}
 $$
 
-(Plus simple que lodev non ?)
+$$
+\frac{deltaDistX}{1} = \frac{1}{|ray_x|}
+$$
 
-**Pour le deuxieme point: ddist_y**
+$$
+deltaDistX = \frac{1}{|ray_x|}
+$$
 
-C'est la meme idee pour $ddist_y$.
+**Pour le deuxieme point: deltaDistY**
+
+C'est la meme idee pour $deltaDistY$.
 
 Je mets quand meme l'image et la formule finale.
 
-![](./img/ddist_y.png)
+![](./img/deltaDistY.png)
 
 $$
-ddist_y = \frac{1}{|dir_y|}
+deltaDistY = \frac{1}{|dir_y|}
 $$
 
-**Pour le troisieme point: sd_dist_x**
+**Pour le troisieme point: sideDistX**
 
-Pour on peut appliquer la meme logique, ou alors on peut remarquer que notre $sd_dist_x$ n est que notre $ddist_x$ mais raccourci de la meme proportion que notre point $P$ est eloigne du mur (qui sera intersecte) par rapport a 1.
+Pour on peut appliquer la meme logique, ou alors on peut remarquer que notre $sideDistX$ n est que notre $deltaDistX$ mais raccourci de la meme proportion que notre point $P$ est eloigne du mur (qui sera intersecte) par rapport a 1.
 
 Ainsi, nous avons simplement a trouver la distance sur l'axe de $x$ de $P$ au prochain mur vertical.
 
-Il suffit donc de multiplier $ddist_x$ par la longueur $PB$.
+Il suffit donc de multiplier $deltaDistX$ par la longueur $PB$.
 
 On obtient donc
 
 $$
-sd_dist_x = ddist_x \times PB
+sideDistX = deltaDistX \times PB
 $$
 
 ![](./img/sideDistX1.png)
@@ -223,14 +235,14 @@ $$
 \begin{equation}
 \left\{
 \begin{aligned}
-	sd_dist_x &= ddist_x \times (pos_x - \lfloor pos_x \rfloor) &\text{si } side_x < 0\\
-	sd_dist_x &= ddist_x \times (\lfloor pos_x \rfloor + 1 - pos_x) &\text{sinon}
+	sideDistX &= deltaDistX \times (pos_x - \lfloor pos_x \rfloor) &\text{si } side_x < 0\\
+	sideDistX &= deltaDistX \times (\lfloor pos_x \rfloor + 1 - pos_x) &\text{sinon}
 \end{aligned}
 \right.
 \end{equation}
 $$
 
-**Pour le quatrieme point: sd_dist_y**
+**Pour le quatrieme point: sideDistY**
 
 Meme logique:
 
@@ -238,8 +250,8 @@ $$
 \begin{equation}
 \left\{
 \begin{aligned}
-	sd_dist_y &= ddist_y \times (pos_y - \lfloor pos_y \rfloor) &\text{si } side_y < 0\\
-	sd_dist_y &= ddist_y \times (\lfloor pos_y \rfloor + 1 - pos_y) &\text{sinon}
+	sideDistY &= deltaDistY \times (pos_y - \lfloor pos_y \rfloor) &\text{si } side_y < 0\\
+	sideDistY &= deltaDistY \times (\lfloor pos_y \rfloor + 1 - pos_y) &\text{sinon}
 \end{aligned}
 \right.
 \end{equation}
