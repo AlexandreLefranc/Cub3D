@@ -45,6 +45,7 @@ $\lfloor x \rfloor$ est la partie entiere inferieur de x. (`floor` en programmat
 Je vais essayer de coller le plus possible a lodev, avec des modifications dans les maths la ou je trouve que ma facon de faire est plus simple. Sans pour autant changer le fond de la methode.
 
 On a notre vecteur position $\overrightarrow{pos}$
+
 $$
 \overrightarrow{pos} =
 	\begin{pmatrix}

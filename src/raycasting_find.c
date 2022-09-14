@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:44:14 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/12 09:50:43 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:58:03 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,14 @@ void	find_wall(t_all *all)
 
 void	find_distance(t_all *all)
 {
+	double	angle;
+
 	if (all->rc.side == 0)
 		all->rc.wall_dist = all->rc.sd_dist_x - all->rc.ddist_x;
 	else
 		all->rc.wall_dist = all->rc.sd_dist_y - all->rc.ddist_y;
+	angle = angle_between_vector(all->player.dir, all->rc.ray);
+	all->rc.corrected_dist = all->rc.wall_dist * cos(angle);
 	if (all->rc.wall_dist < 0.05)
 		all->rc.wall_dist = 0.05;
 }
@@ -66,7 +70,7 @@ void	find_texture(t_all *all)
 
 void	find_wall_height_and_texture_x(t_all *all)
 {
-	all->rc.wall_height = (int)(SCREENH / all->rc.wall_dist);
+	all->rc.wall_height = (int)(SCREENH / all->rc.corrected_dist);
 	all->rc.draw_start = -all->rc.wall_height / 2 + SCREENH / 2;
 	if (all->rc.draw_start < 0)
 		all->rc.draw_start = 0;

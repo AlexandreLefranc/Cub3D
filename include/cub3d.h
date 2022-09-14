@@ -6,7 +6,7 @@
 /*   By: alefranc <alefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:19:27 by alefranc          #+#    #+#             */
-/*   Updated: 2022/09/12 11:11:13 by alefranc         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:59:14 by alefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 # define SCREENW 1800
 # define SCREENH 900
-# define TILE 52
+# define TILE 16
 # define FOVRATIO 0.66
 # define ROTSPEED 0.02
 # define MOVESPEED 0.02
@@ -100,6 +100,7 @@ typedef struct s_raycast
 	int			mapx;
 	int			mapy;
 	double		wall_dist;
+	double		corrected_dist;
 	t_texture	*texture;
 	int			wall_height;
 	double		wall_x;
@@ -186,6 +187,7 @@ int				create_trgb(int t, int r, int g, int b);
 // utils_vec.c
 double			norm(t_vec v);
 void			player_plane(t_all *all);
+double  angle_between_vector(t_vec u, t_vec v);
 
 // utils.c
 void			destroy_all(t_all *all);
